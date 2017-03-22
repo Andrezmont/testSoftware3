@@ -1,0 +1,69 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='description', content='Indicadores de Madurez')
+    meta(name='keywords', content='grafica,madurez')
+    meta(name='author', content='Codrops')
+    link(rel='shortcut icon', href='../favicon.ico')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/main.min.css')
+    link(href='/stylesheets/bootstrap.css', rel='stylesheet')
+
+    link(rel='stylesheet', type='text/css', href='/stylesheets/style1.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/font-awesome.min.css')
+    link(href='http://fonts.googleapis.com/css?family=Terminal+Dosis', rel='stylesheet', type='text/css')
+
+
+  body
+    .container-fluid
+      .row-fluid
+        .span2
+          // Sidebar content
+          ul.ca-menu
+            li
+              a#area(href='#',onClick="return false;")
+                span.ca-icon
+                .ca-content
+                  h2.ca-main Ingresar Area
+                  h3.ca-sub Parametrica
+            li
+              a#empresa(href='#',onClick="return false;")
+                span.ca-icon
+                .ca-content
+                  h2.ca-main Ingresar Empresa
+                  h3.ca-sub Parametrica
+            li
+              a#indicador(href='#',onClick="return false;")
+                span.ca-icon
+                .ca-content
+                  h2.ca-main Ingresar Indicador
+                  h3.ca-sub Parametrica
+            li
+              a#nivel(href='#',onClick="return false;")
+                span.ca-icon
+                .ca-content
+                  h2.ca-main Ingresar Niveles
+                  h3.ca-sub Parametrica
+            li
+              a#cuestionario(href='#',onClick="return false;")
+                span.ca-icon
+                .ca-content
+                  h2.ca-main Ingresar Cuestionario
+                  h3.ca-sub Parametrica
+            li
+              a#analizar(href='#',onClick="return false;")
+                span.ca-icon
+                .ca-content
+                  h2.ca-main Analizar Empresa
+                  h3.ca-sub Grafica
+        .span10
+          // Body content
+          .margen
+            #bloque
+            //block content
+  script(type='text/javascript', src='/javascripts/jquery.js')
+  script(src='/javascripts/bootstrap.min.js')
+  script(src='/javascripts/controlador.js')
