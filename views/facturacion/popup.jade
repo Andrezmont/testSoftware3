@@ -1,0 +1,38 @@
+block head
+  title Buscar prct
+  script(src='/vendor/jquery/jquery.js')
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        div.container-fluid
+          div.row-fluid
+            include style.css
+            center
+              h1 Productos:
+              input(id='prct',type="text", list='prcts',autofocus)
+              datalist#prcts
+                each post, i in actuaciones
+                  option(value="#{post.nombre}",class="#{post._id}")
+            each post, i in actuaciones
+              div(id="#{post.nombre}z",class="#{post.valor}",href="#{post._id}")
+            br 
+            script(language='javascript').
+              document.getElementById("prct")
+              .addEventListener("keyup", function(event) {
+              event.preventDefault();
+              if (event.keyCode == 13) {
+              if($("#prct").val() !== ""){
+              var indice = "#{indice}";
+              var valor = $("div[id*='"+$("#prct").val().split(" ")[$("#prct").val().split(" ").length-1]+"z']").attr("class");
+              var id = $("div[id*='"+$("#prct").val().split(" ")[$("#prct").val().split(" ").length-1]+"z']").attr("href");
+              var producto = $("#prct").val();
+              if(window.opener.validarRepetido(producto) === false){
+              window.opener.actualizarValor(valor,indice,id,producto);
+              window.opener.validarCantidad(id,indice,producto);
+              window.opener.mostrarContenido(indice,valor,$("#prct").val());
+              }
+              }
+              window.close();
+              }
+              });

@@ -1,0 +1,28 @@
+block head
+  title Buscar prct
+  script(src='/vendor/jquery/jquery.js')
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        div.container-fluid
+          div.row-fluid
+            include style.css
+            center
+              h1 Clientes:
+              input(id='prct',type="text", list='prcts',autofocus)
+              datalist#prcts 
+                each post, i in actuaciones
+                  option(value="#{post.nombre} - #{post.cedula}",class="#{post._id}")
+            each post, i in actuaciones
+              div(id="#{post.nombre}z",class="#{post.cedula}",href="#{post._id}")
+            br
+            script(language='javascript').
+              document.getElementById("prct").addEventListener("keyup", function(event) {
+              event.preventDefault();
+              if (event.keyCode == 13) {
+              window.opener.document.getElementById('nombreC').value = $('#prct').val().split("-")[1]|'0';
+              window.opener.mostrarFoco();
+              window.close();
+              }
+              });

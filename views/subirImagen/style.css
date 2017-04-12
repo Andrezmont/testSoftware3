@@ -1,0 +1,47 @@
+<style media="screen">
+
+
+form {
+    display: block;
+    margin: 21px auto;
+    background: #8d8789;
+    border-radius: 51px;
+    padding: 22px;
+}
+.progress
+{
+  display:none;
+  position:relative;
+  width:400px;
+  border: 1px solid #ddd;
+  padding: 1px;
+  border-radius: 3px;
+}
+.bar
+{
+  background-color: #B4F5B4;
+  width:0%;
+  height:20px;
+  border-radius: 3px;
+}
+.percent
+{
+  position:absolute;
+  display:inline-block;
+  top:3px;
+  left:48%;
+}
+img#area {
+    height: 50%;
+    width: 50%;
+    padding: 4px 7px;
+    margin: -11px 120px;
+    border-style: double;
+    border-width: 6px;
+}
+input[type="file"] {
+    color: #000000;
+    font-size: 21px;
+    font: oblique bold 159% cursive;
+}
+</style>

@@ -1,0 +1,29 @@
+extends ../../../layouts/account
+
+block head
+  title Formulario
+
+  link(rel='stylesheet', type='text/css', href='/views/css/demo.min.css')
+  link(rel='stylesheet', type='text/css', media='screen', href='/views/css/form-builder.min.css')
+  link(rel='stylesheet', type='text/css', media='screen', href='/views/css/form-render.min.css')
+block feet
+  script(src='/views/js/jquery.min.js')
+  script(src='/js/form-builder.js')
+  script(src='/js/form-render.js')
+  script(src='/vendor/bootstrap/js/dropdown.js')
+  script(src='/views/dinamico/personalizar.min.js')
+
+block body
+  div.col-sm-6
+    div.page-header
+      div.col-sm-11
+        div(id="empresa", class="#{empresa}")
+        div(id="modulo", class="#{modulo}")
+        div(id="usuario", class="#{usuario}")
+        .build-wrap
+        .render-wrap
+        button.button-input.btn.btn-warning#edit-form Modificar Formulario
+        style.
+          .form-wrap {
+          background: #696973;
+          }

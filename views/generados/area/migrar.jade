@@ -1,0 +1,49 @@
+extends ../../../layouts/account
+
+block head
+  title area
+
+
+block feet
+  script(src='/views/js/jquery.min.js')
+  script(src='/js/bootstrap.min.js')
+
+block body
+  div.page-header
+    div.col-sm-11
+
+      div(id="usuario", class="#{usuario}")
+      form.form-horizontal
+      br
+      .control-group
+        form.control-group#uploadForm(enctype='multipart/form-data', action='/account/area/migrar', method='post')
+            input(type='file', name='userPhoto')
+            br
+            input.btn.btn-primary(type='submit', value='Importar', name='submit')
+            div#status
+
+      script(type='text/javascript', src='/vendor/jquery/jquery.js')
+      script(type='text/javascript', src='/views/js/jquery.form.js')
+      script.
+        $(document).ready(function() {
+        $('#uploadForm').submit(function() {
+        var formData = new FormData($(this)[0]);
+        console.log($(this)[0]);
+        formData.append("titulo", $("#titulo").val());
+        formData.append("usuario", $("#usuario").attr("class"));
+        $.ajax({
+        url: '/account/area/migrar',
+        type: 'POST',
+        data: formData,
+        async: true,
+        success: function (data) {
+        $("#status").html(data);
+        $("#uploadForm").hide();
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+        });
+        return false;
+        });
+        });

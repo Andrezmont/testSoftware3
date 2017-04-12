@@ -1,0 +1,45 @@
+extends ../../layouts/account
+block head
+  title Inventario
+link(href='/css/bootstrap.min.css', rel='stylesheet')
+block body
+  div.col-sm-6
+    div.col-sm-11
+      script(src='/vendor/jquery/jquery.js')
+      br
+      h1 Admin Area
+      form
+        input.form-control(type='nombre', name='nombre')
+        button.btn.btn-default(type='submit',onClick="enviar();return false;") Generar
+        button.btn.btn-danger(type='submit',onClick="eliminar();return false;") Eliminar
+      script(type='text/javascript').
+        function enviar(){
+        $.ajax({
+        url: window.location.pathname,
+        type: 'POST',
+        data: {
+        'nombre': $("input[name='nombre']").val()
+        },
+        error: function(respuesta) {
+        console.log(respuesta);
+        },
+        success: function(respuesta) {
+        console.log(respuesta);
+        }
+        });
+        }
+        function eliminar(){
+        $.ajax({
+        url: window.location.pathname,
+        type: 'DELETE',
+        data: {
+        'nombre': $("input[name='nombre']").val()
+        },
+        error: function(respuesta) {
+        console.log(respuesta);
+        },
+        success: function(respuesta) {
+        console.log(respuesta);
+        }
+        });
+        }

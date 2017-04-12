@@ -1,0 +1,44 @@
+extends ../../../layouts/admin
+
+block head
+  title indicador
+
+block feet
+  script(src='/views/inicio-bundle.min.js')
+block body
+  div.col-sm-11
+  .col-lg-12
+    .box
+      header.dark
+        .icons
+          i.fa.fa-th-large
+        h5 Listado de indicadors
+      .body
+        div(style="padding-left: 12px;")
+          #myModal.modal.fade(role='dialog')
+            .modal-dialog
+              // Modal content
+              .modal-content
+                .modal-header
+                  button.close(type='button', data-dismiss='modal') ×
+                  h4.modal-title Formulario de indicadors
+                .modal-body
+                  .control-group
+                    .build-wrap
+                    .render-wrap
+                    button#guardar.btn-success(type='submit', onclick='return false;') Agregar
+                    button#actualizar.class.btn-info(type='submit', onclick='return false;', data-dismiss='modal', style='display: inline-block;') Actualizar
+                .modal-footer
+                  button.btn.btn-default(type='button', data-dismiss='modal') Close
+          div(id="usuario", class="#{usuario}")
+          div(id="modulo", class="#{modulo}")
+          div(id="empresa", class="#{empresa}")
+          div(id="imagen", class="#{imagen}")
+          div#id
+          table#example.gridtable
+  #panel
+    span#loading1
+      span#outerCircle
+      span#innerCircle
+        span#center
+    #tituloC cargando,Por favor espere!

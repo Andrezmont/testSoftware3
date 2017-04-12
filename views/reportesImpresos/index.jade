@@ -1,0 +1,17 @@
+extends ../../layouts/account
+
+block head
+  title Factura
+link(href='/css/bootstrap.min.css', rel='stylesheet')
+
+block body
+  div.row
+    div.col-sm-6
+      script(src='/vendor/jquery/jquery.js')
+      include script.html
+
+      h2 Generar Formulario
+      form(action="/account/facturacion/impreso/upload", method="post", enctype="multipart/form-data")
+        input(type="text", name="title")
+        input(type="file", multiple, name="image")
+        button(type="submit", value="Upload") Upload File

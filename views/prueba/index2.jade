@@ -1,0 +1,30 @@
+extends ../../layouts/account
+
+block head
+  title Formulario
+  link(rel='stylesheet', type='text/css', href='views/css/demo.min.css')
+  link(rel='stylesheet', type='text/css', media='screen', href='views/css/form-builder.min.css')
+  link(rel='stylesheet', type='text/css', media='screen', href='views/css/form-render.min.css')
+block feet
+  script(src='views/js/jquery.min.js')
+  script(src='js/form-builder.js')
+  script(src='js/form-render.js')
+  script(src='/views/cliente/per_cliente.min.js')
+
+
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        div(id="usuario", class="#{usuario}")
+        div(id="modulo", class="#{modulo}")
+        .build-wrap
+        .render-wrap
+        button.button-input.btn.btn-warning#edit-form Modificar Formulario
+        style.
+          [id^=frmb-][id$='-form-wrap'] .frmb .field-actions {
+          left: 186px;
+          }
+          [id^=frmb-][id$='-form-wrap'] .frmb .field-actions .btn {
+          width: 69px;
+          }

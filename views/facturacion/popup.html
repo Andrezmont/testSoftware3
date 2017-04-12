@@ -1,0 +1,35 @@
+<link href='/css/bootstrap.css' rel='stylesheet'></link>
+<link href='/css/jquery-customselect-1.9.1.css' rel='stylesheet'></link>
+<script type="text/javascript" src="/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-customselect-1.9.1.js"></script>
+<script type="text/javascript">
+// demo functions
+$(document).ready(function() {
+  $("#ddlNames").customselect();
+  $(function() {
+  $("#ddlNames").customselect({
+    "csclass":"custom-select",  // Class to match
+    "search": true, // Is searchable?
+    "numitems":     4,    // Number of results per page
+    "searchblank":  false,// Search blank value options?
+    "showblank":    true, // Show blank value options?
+    "searchvalue":  false,// Search option values?
+    "hoveropen":    false,// Open the select on hover?
+    "emptytext":    "",   // Change empty option text to a set value
+    "showdisabled": false// Show disabled options
+  });
+  });
+
+    $("#enviar").click(function() {
+        if (window.opener != null && !window.opener.closed) {
+            var txtName = window.opener.document.getElementById("txtName");
+            txtName.value = document.getElementById("ddlNames").value;
+        }
+        window.close();
+    });
+  });
+</script>
+
+    </div>
+  </div>
+</div>

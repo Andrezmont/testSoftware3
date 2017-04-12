@@ -1,0 +1,29 @@
+extends ../../../layouts/admin
+block head
+  title Manage Users
+block neck
+  link(rel='stylesheet', href='/views/admin/users/index.min.css?#{cacheBreaker}')
+  link(rel='stylesheet', href='/css/style.min.css')
+block feet
+  script(src='/vendor/jquery/jquery.js')
+  script(src='/js/jstree.min.js')
+  script(src='/views/admin/menu/index.js')
+  script(src='/js/cargue.js')
+block body
+  div.col-sm-11
+  .col-lg-12
+    .box
+      br
+      h1 Arbol
+      div#entrada(class="#{entrada}")
+      .col-xs-6
+        #jstree
+        button.btn.btn-warning.btn-sm(type='button', onclick='almacenar();') Guardar
+      .col-xs-6
+        form.form-inline
+          .form-group
+            label Id:
+            input#id.form-control(type='text','disabled'='disabled')
+          .form-group
+            label(for='pwd') Ruta:
+            input#ruta.form-control(type='text',onblur="actualizarRuta()")

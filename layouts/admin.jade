@@ -1,0 +1,93 @@
+doctype html
+html
+  head
+    block head
+      title #{title}
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    block neck
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/sb-admin.css', rel='stylesheet')
+    link(href='/css/main.min.css', rel='stylesheet')
+    
+    link(href='/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/css/toastr.css', rel='stylesheet')
+    link(href='/views/css/loading.css', rel='stylesheet')
+    link(href='/views/css/datepicker.min.css', rel='stylesheet')
+    
+    html
+    body(style="background:white;")
+      #wrapper
+        // Navigation
+        nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+          // Brand and toggle get grouped for better mobile display
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href='/account/') #{projectName}
+          // Top Menu Items
+          ul.nav.navbar-right.top-nav
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown')
+                i.fa.fa-user
+                | Cuenta (#{user.username})
+                b.caret
+              ul.dropdown-menu
+                li
+                  a(href='/logout/')
+                    i.fa.fa-fw.fa-power-off
+                    |  Cerrar Sesión
+          // Menu de la Izquierda
+          .collapse.navbar-collapse.navbar-ex1-collapse
+            ul.nav.navbar-nav.side-nav
+              li
+                a#in_0(href='/admin/')
+                  i.fa.fa-fw.glyphicon.glyphicon-home
+                  |  Inicio
+              - if(menu !== undefined)
+                - for (var i = menu.length - 1; i >= 0 ; i--)
+                  - var id = menu[i].id;
+                  - var label = menu[i].text;
+                  - var ruta = menu[i].a_attr.href;
+                  - var subNivel = menu[i].subNivel;
+                  - if(menu[i].parent === '#')
+                    li
+                      a(href='#{ruta}', data-toggle='collapse', data-target='##{id}','id'='menu_#{id}')
+                        i.fa.glyphicon.glyphicon-star
+                        |  #{label}
+                        i.fa.fa-fw
+                      ul.collapse(id='#{id}')
+                        - for (var s = 0; s < menu.length ; s++)
+                          - var id2 = menu[s].id;
+                          - var label2 = menu[s].text;
+                          - var ruta2 = menu[s].a_attr.href;
+                          - if(menu[s].parent === id)
+                            li
+                              a(href='#{ruta2}', data-toggle='collapse', data-target='##{id2}','id'='menu_#{id2}')
+                                i.fa.glyphicon.glyphicon-star
+                                |  #{label2}
+                                i.fa.fa-fw
+                              ul.collapse(id='#{id2}')
+                                - for (var k = menu.length - 1; k >= 0 ; k--)
+                                  - var id3 = menu[k].id;
+                                  - var label3 = menu[k].text;
+                                  - var ruta3 = menu[k].a_attr.href;
+                                  - if(menu[k].parent === id2)
+                                    li
+                                      a(href='#{ruta3}', data-toggle='collapse', data-target='##{id3}','id'='menu_#{id3}')
+                                        i.fa.glyphicon.glyphicon-star
+                                        |  #{label3}
+                                        i.fa.fa-fw.fa-caret-down
+                                      ul.collapse(id='#{id3}')
+        br                              
+        div.page
+          block body
+      
+      script(src='/vendor/jquery/jquery.js')
+      script(src='/views/js/toastr.min.js')
+      script(src='/vendor/bootstrap/js/dropdown.js')
+      
+      
+      block feet

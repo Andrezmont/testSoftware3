@@ -1,0 +1,55 @@
+<script type="text/javascript" src='/vendor/jquery/jquery.js'></script>
+<script type="text/javascript" src='/views/js/jquery.form.js'></script>
+
+<!-- The HTML -->
+<form id="uploadForm" enctype="multipart/form-data" action="/account/subir" method="post">
+    <input type="file" name="userPhoto" />
+    <input type="submit" value="Guardar" class="btn btn-primary" name="submit">
+</form>
+
+<script>
+$(document).ready(function() {
+  setTimeout(function() {
+    $("#menuVenta").click();
+    $("#in_v2").css({'outline': 'none','background-color': '#393a39','color':'white'});
+  },400);
+  function getCookie(name) {
+       var cookieValue = null;
+       if (document.cookie && document.cookie !== '') {
+           var cookies = document.cookie.split(';');
+           for (var i = 0; i < cookies.length; i++) {
+               var cookie = jQuery.trim(cookies[i]);
+               // Does this cookie string begin with the name we want?
+               if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                   cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                   break;
+               }
+           }
+       }
+       return cookieValue;
+   }
+  var csrftoken = getCookie('_csrfToken');
+  $('#uploadForm').submit(function() {
+        var formData = new FormData($(this)[0]);
+          formData.append("titulo", $("#titulo").val());
+          formData.append("usuario", $("#usuario").attr("class"));
+          formData.append("csrfToken", csrftoken);
+
+         $.ajax({
+             url: window.location.pathname,
+             type: 'POST',
+             data: formData,
+             async: true,
+             success: function (data) {
+                 console.log(data)
+                 $("#status").html(data);
+             },
+             cache: false,
+             contentType: false,
+             processData: false
+         });
+        //Very important line, it disable the page refresh.
+        return false;
+    });
+});
+</script>

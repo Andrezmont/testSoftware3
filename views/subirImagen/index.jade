@@ -1,0 +1,20 @@
+extends ../../layouts/account
+
+block head
+  title Factura
+  link(href='/css/bootstrap.min.css', rel='stylesheet')
+
+block body
+  div.col-sm-11
+    .col-lg-12
+      div.page-header
+
+        div(id="usuario", class="#{usuario}")
+        .control-group
+        label.control-label(for='inputEmail') Titulo
+        .controls
+          input#titulo(type='text', placeholder='Titulo',value="#{titulo}",accept="application/x-zip-compressed,image/*")
+        include index.html
+        include style.css
+        div#status
+          img#area(src="#{imagen}")

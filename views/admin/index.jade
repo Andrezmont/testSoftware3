@@ -1,0 +1,48 @@
+extends ../../layouts/admin
+
+block head
+  title Admin Area
+
+block feet  
+  script(src='/js/bootstrap.min.js')
+  script(src='/vendor/bootstrap/js/dropdown.js')
+  script(src='/js/cargue.js')
+block body
+  div.col-sm-11
+  .col-lg-12
+    .box
+      div.page-header
+        h1 Región Administrativa
+      div.row
+        div.col-sm-2
+          div.well.stat
+            div.stat-value #{countUser}
+            div.stat-label Usuarios
+        div.col-sm-2
+          div.well.stat
+            div.stat-value #{countAccount}
+            div.stat-label Cuentas
+        div.col-sm-2
+          div.well.stat
+            div.stat-value #{countAdmin}
+            div.stat-label Administradores
+        div.col-sm-2
+          div.well.stat
+            div.stat-value #{countnivel}
+            div.stat-label Niveles
+        div.col-sm-2
+          div.well.stat
+            div.stat-value #{countarea}
+            div.stat-label Area
+        div.col-sm-2
+          div.well.stat
+            div.stat-value #{countempresa}
+            div.stat-label Empresas
+        div.col-sm-2
+          div.well.stat
+            div.stat-value #{countindicador}
+            div.stat-label Indicadores
+        div.col-sm-2
+          div.well.stat
+            div.stat-value #{countcuestionario}
+            div.stat-label Cuestionarios

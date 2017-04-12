@@ -1,0 +1,41 @@
+<style type="text/css">
+.container {
+    width: 100%;
+}
+table.gridtable {
+	width: auto;
+	font-family: sans-serif;
+	font-size:13px;
+	text-align:center;
+	border-collapse: collapse;
+	box-shadow: 10px 5px 2px #888888;
+}
+table.gridtable th {
+	border-width: 1px;
+	border-style: solid;
+	background-color: #dedede;
+}
+table.gridtable td {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d2d2e0;
+
+}
+div#example_filter {
+    position: relative;
+    bottom: 19px;
+}
+table#example {
+    position: relative;
+    bottom: 12px;
+}
+
+input[type="button"] {
+    border: 0px;
+}
+
+td.dt-body-center.sorting_1 {
+    height: 77px;
+}
+
+</style>

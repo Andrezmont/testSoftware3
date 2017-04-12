@@ -1,0 +1,174 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+
+
+
+
+    $("#guardar").click(function() {
+      $.ajax({
+          url: "/account/facturacion/dinamica/",
+          type: 'POST',
+          data: {
+              'nombre': $("#nombre").val(),
+              'tipo': $("#tipo").val(),
+              'usuario': $("#usuario").attr("class")
+          },
+          error: function(respuesta) {
+              console.log(respuesta);
+          },
+          success: function(respuesta) {
+              console.log(respuesta);
+              generarCampos();
+          }
+      });
+    });
+    setTimeout(function() {
+      generarCampos();
+    },200);
+  });
+  function generarCampos() {
+
+    $.ajax({
+        url: "/account/facturacion/dinamica/listar",
+        type: 'POST',
+        error: function(respuesta) {
+            console.log(respuesta);
+        },
+        success: function(respuesta) {
+            var html = '<div style="">'
+              html += '<div class="control-group">'
+              for (var i = 0; i < respuesta.length; i++) {
+                // Si es un campo de texto simple
+                if (respuesta[i].tipo === 'inputText') {
+                  html +=  '<div class="control-group">';
+                  html += '<label for="sel1"> '+respuesta[i].nombre+' </label>'
+                  html += '<input id="'+respuesta[i]._id+'" type="text" class="txt'+i+' form-control" placeholder="">';
+                  html += '<button type="button" name="eliminar" id="' + respuesta[i]._id + '" class="btn btn-danger fa fa-trash-o" ></button>';
+                  html += '</div>';
+                }
+                // Si es un campo de texto numerico
+                if (respuesta[i].tipo === 'inputNumber') {
+                  html +=  '<div class="control-group">';
+                  html += '<label for="sel1"> '+respuesta[i].nombre+' </label>'
+                  html += '<input id="'+respuesta[i]._id+' type="text" class="txt'+i+' form-control" onkeypress=" return event.charCode >= 48 && event.charCode <= 57;" placeholder="">';
+                  html += '<button type="button" name="eliminar" id="' + respuesta[i]._id + '" class="btn btn-danger fa fa-trash-o" ></button>';
+                  html += '</div>';
+                }
+                // Si es un campo de texto TextArea
+                if (respuesta[i].tipo === 'textArea') {
+                  html +=  '<div class="control-group">';
+                  html += '<label for="sel1"> '+respuesta[i].nombre+' </label>'
+                  html += '<textarea id="'+respuesta[i]._id+'" class="txt'+i+' form-control" rows="3" style="resize:none"></textarea>';
+                  html += '<button type="button" name="eliminar" id="' + respuesta[i]._id + '" class="btn btn-danger fa fa-trash-o" ></button>';
+                  html += '</div>';
+                }
+
+
+              }
+              html += '</div>';
+            html += '</div>';
+            $("#canvas").html(html);
+
+            $("button[name='eliminar']").click(function() {
+              $.ajax({
+                  url: "/account/facturacion/dinamica/",
+                  type: 'DELETE',
+                  data: {
+                      'id': $(this).attr("id")
+                  },
+                  error: function(respuesta) {
+                      console.log(respuesta);
+                  },
+                  success: function(respuesta) {
+                      if (respuesta != '') {
+                          console.log(respuesta);
+                          generarCampos();
+                      }
+                  }
+                });
+              });
+
+        }
+    });
+
+
+  }
+  function mostrar(salida) {
+
+      table = $('#example').DataTable({
+          "data": salida,
+          columnDefs: [{
+              orderable: false,
+              className: 'select-checkbox',
+              targets: 0
+          }],
+          "columns": calcularCamposDinamicos(),
+          'columnDefs': [{
+              'targets': 0,
+              'searchable': false,
+              'orderable': false,
+              'className': 'dt-body-center',
+              'render': function(data, type, full, meta) {
+                  return '<input type="checkbox" class="' + $('<div/>').text(data).html() + '">';
+              }
+          }],
+          "destroy": true,
+          dom: 'T<"clear">lfrtip',
+          tableTools: {
+              "sSwfPath": "http://" + window.location.hostname + ":" + window.location.port + "/swf/copy_csv_xls_pdf.swf"
+          }
+      });
+
+  }
+  function calcularCamposDinamicos() {
+
+
+  var json = '[';
+  var inputs = $('input[class^=txt]');
+  for (var i = 0; i < inputs.length; i++) {
+    json += '{';
+    json += '"label":"'+inputs.eq(i).parent().find("label").text().trim()+'",'
+    json += '"valor":"'+inputs.val()+'"'
+    json += '}';
+
+    if (i !== inputs.length-1) {
+      json += ',';
+    }
+  }
+  json += ']';
+
+  var arreglo = JSON.parse(json);
+  var salida = [{
+      "data": "indice",
+      title: "<input type='checkbox' id='example-select-all'>"
+  }, {
+      "data": "indice",
+      title: "N°"
+  }];
+
+  var cadena = '[';
+
+  for (var i = 0; i < arreglo.length; i++) {
+    cadena += '{"data": "'+arreglo[i].label+'","title": "'+arreglo[i].label+'"}';
+    if (i !== arreglo.length-1) {
+      cadena += ',';
+    }
+  }
+  cadena += ']';
+  var elementos = JSON.parse(cadena);
+
+  for (var i = 0; i < elementos.length; i++) {
+    salida.push(elementos[i]);
+  }
+  salida.push({
+      "data": "indice",
+      title: "Acción",
+      render: function(data, type, row) {
+          return '<div class="btn-group"><button name="ver" type="button" id="' + data + '" data-toggle="modal" data-target="#myModal" class="btn btn-default fa fa-edit " ></button><button type="button" name="eliminar" id="' + data + '"class="btn btn-danger fa fa-trash-o" ></button></div>';
+      }
+  });
+
+  console.log(JSON.stringify(salida));
+  return salida;
+  }
+</script>

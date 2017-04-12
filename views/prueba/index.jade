@@ -1,0 +1,29 @@
+extends ../../layouts/account
+block head
+  title Inventario
+link(href='/css/bootstrap.min.css', rel='stylesheet')
+block body
+  div.row
+    div.col-sm-6
+      div.page-header
+        script(src='/vendor/jquery/jquery.js')
+        script(src='/socket.io/socket.io.js')
+        h1 Admin Area
+        table#tabla
+          thead
+            tr
+              th Nombre
+              th Valor
+          tbody
+        script.
+          $( document ).ready(function() {
+          var socket = io.connect();
+          socket.on('date', function(data){
+          var salida='';
+          for (var i = 0; i < data.info.length; i++) {
+            salida+='<tr><td>'+data.info[i].data.Nombre+'</td><td>'+data.info[i].data.Valor+'</td></tr>';
+          }
+          $('table#tabla tbody').html(salida);
+          });
+          $('#tabla').DataTable({});
+          });
