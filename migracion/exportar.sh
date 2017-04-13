@@ -11,7 +11,6 @@ mongoexport --db ventas --collection establecimientos --out establecimientos.jso
 mongoexport --db ventas --collection facturas --out facturas.json
 mongoexport --db ventas --collection indicadors --out indicadors.json
 mongoexport --db ventas --collection inventarios --out inventarios.json
-mongoexport --db ventas --collection loginattempts --out loginattempts.json
 mongoexport --db ventas --collection menus --out menus.json
 mongoexport --db ventas --collection nivels --out nivels.json
 mongoexport --db ventas --collection proveedors --out proveedors.json

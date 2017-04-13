@@ -12,7 +12,7 @@ $( document ).ready(function() {
     }
 
     $.ajax({
-      url: "/account/area/listar",
+      url: "/admin/area/listar",
       type: 'GET',
       error: function(respuesta) {
           console.log(respuesta);
@@ -20,11 +20,12 @@ $( document ).ready(function() {
       success: function(respuesta) {
         // si no hay un area registrada se deshabilita el textarea
         if (respuesta.length === 0) {
-          $("#select-1491894036054").attr("disabled","disabled");
+          $("#select-1492050948070").attr("disabled","disabled");
         }else{
-          $("#select-1491894036054").append("<option value='-1'>Seleccionar..</option>");
           for (var i = 0; i < respuesta.length; i++) {
-            $("#select-1491894036054").append("<option value='"+respuesta[i].data[0].valor+"'>"+respuesta[i].data[0].valor+"</option>");
+            if (respuesta[i].data) {
+              $("#select-1492050948070").append("<option value='"+respuesta[i].data[0].valor+"'>"+respuesta[i].data[0].valor+"</option>");
+            }
           }
         }
       }

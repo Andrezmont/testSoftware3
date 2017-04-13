@@ -65,8 +65,7 @@ function formatAMPM(d) {
  * En caso de presionar en el boton ver se visualiza el registro en los items construidos
  * dinamicamente
  **/
- var ver = function(){
-  var id = $(this).attr("id");
+function ver(id){
   $("#id").val(id);
 
   $.ajax({
@@ -130,7 +129,7 @@ function formatAMPM(d) {
           $("#guardar").hide();
       }
   });
-};
+}
 /**
  * @autor:godie007
  * @date: 2017/01/11 03:21
@@ -322,7 +321,7 @@ function generarTitulosDinamicos() {
         'searchable': false,
         'orderable': false,
         render: function(data, type, row) {
-            return '<div class="btn-group"><button id="' + data + '" type="button" data-toggle="modal" data-target="#myModal" class="btn btn-default ver" >Editar</button><button type="button" id="' + data + '"class="btn btn-default eliminarR" >Eliminar</button></div>';
+            return '<div class="btn-group"><button type="button" data-toggle="modal" onclick="ver(&quot;'+data+'&quot;);" data-target="#myModal" class="btn btn-default" >Editar</button><button type="button" id="&quot;' + data + '&quot;"class="btn btn-default eliminarR" >Eliminar</button></div>';
         }
     });
     return salida;
@@ -719,10 +718,6 @@ function mostrar(entrada) {
                 }]
             }
         ]
-    });
-    $(".ver").click(ver);
-    $(".eliminarR").click(function() {
-      eliminar($(this).attr("id"));
     });
     $("input[type=checkbox]:visible").click(function() {
         $(".eliminar").removeAttr("disabled");

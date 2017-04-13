@@ -10,32 +10,22 @@
             if (err) {
                 console.log(err);
             }
-            req.app.db.models.impreso.find({
-                'usuario': user.username
-            }).exec(function(err, acc) {
-                var imagen = '';
-                if (acc !== undefined) {
-                    if (acc !== '') {
-                        if (acc.length > 0) {
-                            imagen = acc[0].foto;
-                        }
-                    }
-                }
-                var ip;
-                if (req.headers['x-forwarded-for']) {
-                    ip = req.headers['x-forwarded-for'].split(",")[0];
-                } else if (req.connection && req.connection.remoteAddress) {
-                    ip = req.connection.remoteAddress;
-                } else {
-                    ip = req.ip;
-                }
-                console.log("cliente->" + ip);
-                res.render('generados/template/inicio', {
-                    'usuario': user.username,
-                    'modulo': 'template',
-                    'imagen': imagen
-                });
+
+
+            var ip;
+            if (req.headers['x-forwarded-for']) {
+                ip = req.headers['x-forwarded-for'].split(",")[0];
+            } else if (req.connection && req.connection.remoteAddress) {
+                ip = req.connection.remoteAddress;
+            } else {
+                ip = req.ip;
+            }
+            console.log("cliente->" + ip);
+            res.render('generados/template/inicio', {
+                'usuario': user.username,
+                'modulo': 'template',
             });
+
         });
     };
 

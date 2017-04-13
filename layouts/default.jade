@@ -4,48 +4,58 @@ html
     block head
       title #{title}
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    meta(name="csrf-token", content="#{token}")
-    link(rel='stylesheet', href='/layouts/core.min.css?#{cacheBreaker}')
+    link(href='/css/bootstrap.min.css', rel='stylesheet')
+    link(href='/css/sb-admin.css', rel='stylesheet')
+    link(href='/css/main.min.css', rel='stylesheet')
+    link(href='/css/font-awesome.min.css', rel='stylesheet')
     block neck
-  body
-    div.navbar.navbar-default.navbar-fixed-top
-      div.container
-        div.navbar-header
-          a.navbar-brand(href='/')
-            img.navbar-logo(src='/media/logo-symbol-64x64.png', alt='Logo')
-            span.navbar-brand-label #{projectName}
-          button.navbar-toggle.collapsed(data-toggle='collapse', data-target='.my-navbar-collapse')
+  body(style="background:white;")
+    #wrapper
+      // Navigation
+      nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+            span.sr-only Toggle navigation
             span.icon-bar
             span.icon-bar
             span.icon-bar
-        div.navbar-collapse.my-navbar-collapse.collapse
-          ul.nav.navbar-nav
-            li: a(href='/') Inicio
-            li: a(href='/contact/') Contactar
-          ul.nav.navbar-nav.navbar-right
-            if user && user.username
-              li: a(href='#{user.defaultReturnUrl}')
-                i.fa.fa-user
-                |  #{user.username}
-            else
-              li: a(href='/login/')
+          a.navbar-brand(href='/') #{projectName}
+        // Top Menu Items
+        ul.nav.navbar-right.top-nav
+          if user && user.username    
+            li
+              a(href='/logout/')
+                i.fa.fa-fw.fa-power-off
+                |  (#{user.username})
+                |  Cerrar Sesión
+          else
+            li
+              a(href='/login/')
                 i.fa.fa-user
                 |  Iniciar Sesión
-    div.page
-      div.container
-        block body
+        if user && user.username    
+          // Menu de la Izquierda
+          .collapse.navbar-collapse.navbar-ex1-collapse
+            ul.nav.navbar-nav.side-nav
+              li
+                a#in_0(href='/')
+                  i.fa.fa-fw.glyphicon.glyphicon-home
+                  |  Inicio  
+                  li
+                    a(href='/account/grafica', data-toggle='collapse', data-target='#analizar','id'='menu_analizar')
+                      i.fa.glyphicon.glyphicon-star
+                      |  Analizar
+                      i.fa.fa-fw
+      div.page
+        div.container
+          block body
 
     div.footer
       div.container
         span.copyright.pull-right
           |&#169; #{copyrightYear} #{copyrightName}
-        ul.links
-          li: a(href='/') Inicio
-          li: a(href='/contact/') Contactar
         div.clearfix
-
-    div.ajax-spinner
-      img(src='/media/ajax-pulse.gif', alt='Cargando...')
 
     //if lte IE 9
     script(src='/layouts/core.min.js?#{cacheBreaker}')

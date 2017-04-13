@@ -222,8 +222,9 @@
     app.get('/admin/area/listar', require('./views/generados/area/index').listar);
 
 
+    app.get('/account/grafica/', require('./views/grafica/index').grafica);
+    app.post('/account/grafica/', require('./views/grafica/index').data);
 
-    app.get('/account/template/listar', require('./views/generados/template/index').listar);
 
     // account >Facturacion
     app.get('/account/facturacion/', require('./views/facturacion/index').init);

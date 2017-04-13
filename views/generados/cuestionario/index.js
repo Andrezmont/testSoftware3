@@ -10,32 +10,22 @@
             if (err) {
                 console.log(err);
             }
-            req.app.db.models.impreso.find({
-                'usuario': user.username
-            }).exec(function(err, acc) {
-                var imagen = '';
-                if (acc !== undefined) {
-                    if (acc !== '') {
-                        if (acc.length > 0) {
-                            imagen = acc[0].foto;
-                        }
-                    }
-                }
-                var ip;
-                if (req.headers['x-forwarded-for']) {
-                    ip = req.headers['x-forwarded-for'].split(",")[0];
-                } else if (req.connection && req.connection.remoteAddress) {
-                    ip = req.connection.remoteAddress;
-                } else {
-                    ip = req.ip;
-                }
-                console.log("cliente->" + ip);
-                res.render('generados/cuestionario/inicio', {
-                    'usuario': user.username,
-                    'modulo': 'cuestionario',
-                    'imagen': imagen
-                });
+
+
+            var ip;
+            if (req.headers['x-forwarded-for']) {
+                ip = req.headers['x-forwarded-for'].split(",")[0];
+            } else if (req.connection && req.connection.remoteAddress) {
+                ip = req.connection.remoteAddress;
+            } else {
+                ip = req.ip;
+            }
+            console.log("cliente->" + ip);
+            res.render('generados/cuestionario/inicio', {
+                'usuario': user.username,
+                'modulo': 'cuestionario',
             });
+
         });
     };
 
@@ -138,7 +128,7 @@
             res.redirect('/login/');
         }
         req.app.db.models.User.findById(req.user.id, {
-            'username': 1,
+            'username': 1
         }).exec(function(err, user) {
             if (err) {
                 console.log(err);
@@ -153,14 +143,10 @@
 
     exports.eliminarTodo = function(req, res, next) {
         req.app.db.models.User.findById(req.user.id, {
-            'username': 1,
+            'username': 1
         }).exec(function(err, user) {
             req.app.db.models.campo.remove({
-                'modulo': 'cuestionario',
-                //,
-                //'label': {
-                //    $nin: ['Nombre', 'Valor', 'Cantidad']
-                //}
+                'modulo': 'cuestionario'
             }, function(err, account) {
                 if (err) {
                     console.log(err);

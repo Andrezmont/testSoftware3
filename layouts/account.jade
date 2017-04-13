@@ -27,38 +27,29 @@ html
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            a.navbar-brand(href='/account/') #{projectName}
+            a.navbar-brand(href='/') #{projectName}
           // Top Menu Items
           ul.nav.navbar-right.top-nav
-            li.dropdown
-              a.dropdown-toggle(href='#', data-toggle='dropdown')
-                i.fa.fa-user
-                | Cuenta (#{user.username})
-                b.caret
-              ul.dropdown-menu
-                li
-                  a(href='/account/settings/')
-                    i.fa.fa-fw.fa-gear
-                    |  Configurar
-                li.divider
-                li
-                  a(href='/logout/')
-                    i.fa.fa-fw.fa-power-off
-                    |  Cerrar Sesión
+            li
+              a(href='/logout/')
+                i.fa.fa-fw.fa-power-off
+                | (#{user.username}) Cerrar Sesión    
+              
           // Menu de la Izquierda
           .collapse.navbar-collapse.navbar-ex1-collapse
             ul.nav.navbar-nav.side-nav
               li
-                a#in_0(href='/account/')
+                a#in_0(href='/')
                   i.fa.fa-fw.glyphicon.glyphicon-home
                   |  Inicio  
                   li
-                    a(href='/account/analizar', data-toggle='collapse', data-target='#analizar','id'='menu_analizar')
+                    a(href='/account/grafica', data-toggle='collapse', data-target='#analizar','id'='menu_analizar')
                       i.fa.glyphicon.glyphicon-star
                       |  Analizar
                       i.fa.fa-fw
-                      
-        br                              
+        br                                        
+        br
+        br
         div.page
           block body
       // jQuery

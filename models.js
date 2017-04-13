@@ -2,7 +2,7 @@
   'use strict';
   exports = module.exports = function(app, mongoose) {
     //embeddable docs first
-    
+
     require('./schema/nivel')(app, mongoose);
     require('./schema/cuestionario')(app, mongoose);
     require('./schema/indicador')(app, mongoose);
@@ -14,7 +14,6 @@
     require('./schema/Category')(app, mongoose);
     require('./schema/Inventario')(app, mongoose);
     require('./schema/Campo')(app, mongoose);
-    require('./schema/Impreso')(app, mongoose);
     require('./schema/Menu')(app, mongoose);
     require('./schema/empresa')(app, mongoose);
     //then regular docs

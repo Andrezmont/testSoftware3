@@ -10,32 +10,22 @@
             if (err) {
                 console.log(err);
             }
-            req.app.db.models.impreso.find({
-                'usuario': user.username
-            }).exec(function(err, acc) {
-                var imagen = '';
-                if (acc !== undefined) {
-                    if (acc !== '') {
-                        if (acc.length > 0) {
-                            imagen = acc[0].foto;
-                        }
-                    }
-                }
-                var ip;
-                if (req.headers['x-forwarded-for']) {
-                    ip = req.headers['x-forwarded-for'].split(",")[0];
-                } else if (req.connection && req.connection.remoteAddress) {
-                    ip = req.connection.remoteAddress;
-                } else {
-                    ip = req.ip;
-                }
-                console.log("cliente->" + ip);
-                res.render('generados/area/inicio', {
-                    'usuario': user.username,
-                    'modulo': 'area',
-                    'imagen': imagen
-                });
+
+
+            var ip;
+            if (req.headers['x-forwarded-for']) {
+                ip = req.headers['x-forwarded-for'].split(",")[0];
+            } else if (req.connection && req.connection.remoteAddress) {
+                ip = req.connection.remoteAddress;
+            } else {
+                ip = req.ip;
+            }
+            console.log("cliente->" + ip);
+            res.render('generados/area/inicio', {
+                'usuario': user.username,
+                'modulo': 'area',
             });
+
         });
     };
 
@@ -120,7 +110,7 @@
                 console.log(err);
             }
             req.app.db.models.area.find({
-              }).sort({
+            }).sort({
                 "fecha_creacion": -1
             }).exec(function(err, doc) {
                 if (err) {
@@ -157,10 +147,6 @@
         }).exec(function(err, user) {
             req.app.db.models.campo.remove({
                 'modulo': 'area'
-                //,
-                //'label': {
-                //    $nin: ['Nombre', 'Valor', 'Cantidad']
-                //}
             }, function(err, account) {
                 if (err) {
                     console.log(err);
