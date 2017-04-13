@@ -1,0 +1,2 @@
+{"_id":{"$oid":"587c3c2553d9da2082c00f08"},"data":{"Nombre":"Tienda de Chuchoo","Dirección":"nada","Telefono":"32321321","Celular":"321321","Regimen":"Simplificado","Ciudad":"Armenia","Dueño":"Juan Carlos"},"fecha_creacion":{"$date":"2017-01-16T03:21:09.404Z"},"usuario":"root","__v":0}
+{"_id":{"$oid":"587c3c2f53d9da2082c00f0e"},"data":{"Nombre":"Tienda de Maderas","Dirección":"nada","Telefono":"32321321","Celular":"321321","Regimen":"Simplificado","Ciudad":"Armenia","Dueño":"Juan Carlos"},"fecha_creacion":{"$date":"2017-01-16T03:21:19.470Z"},"usuario":"root","__v":0}

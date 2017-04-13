@@ -1,0 +1,2 @@
+{"_id":{"$oid":"587c3bff187f4f081eb19df8"},"name":{"first":"Root","last":"Admin","full":"Root Admin"},"groups":["root"],"user":{"id":{"$oid":"587c3bff187f4f081eb19df9"},"name":"root"}}
+{"_id":{"$oid":"58d94268dbda521afc857293"},"search":["ingenieros","",""],"timeCreated":{"$date":"2017-03-27T16:48:40.766Z"},"permissions":[{"permit":true,"name":"lectura","_id":{"$oid":"58d9435bdbda521afc857295"}}],"groups":["ingenieria"],"name":{"last":"","middle":"","first":"ingenieros","full":"ingenieros"},"user":{"name":""},"__v":0}

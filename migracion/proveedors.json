@@ -1,0 +1,1 @@
+{"_id":{"$oid":"587d8151cab65b594d3889ed"},"data":[{"valor":"1983432","titulo":"Cedula","id":"number-1484620058706"},{"valor":"Juan Carlos Parra","titulo":"Nombre","id":"text-1484620053276"}],"fecha_creacion":{"$date":"2017-01-17T02:28:33.329Z"},"establecimiento":"587c3c2553d9da2082c00f08","usuario":"123","modulo":"proveedor","__v":0}

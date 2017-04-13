@@ -1,0 +1,1 @@
+{"_id":{"$oid":"587d737c360ef851563e83d1"},"data":[{"valor":"100","titulo":"Cédula","id":"number-1484283022679"},{"valor":"diego","titulo":"Nombre","id":"text-1484283019772"}],"fecha_creacion":{"$date":"2017-01-17T01:29:32.922Z"},"establecimiento":"587c3c2553d9da2082c00f08","usuario":"123","modulo":"cliente","__v":0}
