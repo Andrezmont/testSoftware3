@@ -5,8 +5,9 @@ Proyecto Final Ingenieria de Software 3
 
 | Integrante                 | Identificacón | Rol            |
 |----------------------------|:-------------:|---------------:|
-| Diego Fernando Echevery    |  1097038001   |   Scrum Master |
+| Diego Fernando Echevery    |  1097038001   |     Master     |
 | Luisa Maria Valderrama     |  1094952380   | Desarrolladora |
+| cesar augusto taborda h.   |  1094925887   | Desarrolladora |
 
 Información
 ===========
@@ -15,7 +16,7 @@ La Aplicacióm esta desarrollada en [Node.js](https://nodejs.org/) v4.2.6. La Ap
 #Comandos de instalación del aplicativo.
 
 ```sh
-$ cd proyecto_ingSoftware2
+$ cd proyecto_ingSoftware3
 $ npm install -d
 $ npm start
 ```
