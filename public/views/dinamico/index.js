@@ -65,7 +65,7 @@ function formatAMPM(d) {
  * En caso de presionar en el boton ver se visualiza el registro en los items construidos
  * dinamicamente
  **/
-function ver(id){
+window.ver = function(id){
   $("#id").val(id);
 
   $.ajax({
@@ -129,13 +129,13 @@ function ver(id){
           $("#guardar").hide();
       }
   });
-}
+};
 /**
  * @autor:godie007
  * @date: 2017/01/11 03:21
  * Este metodo elimina un determinado registro teniendo como parametro su id
  **/
-function eliminar(id) {
+window.eliminar =function (id) {
     if (confirm('Esta Seguro?')) {
         toastr.options = {
             closeButton: true,
@@ -168,7 +168,7 @@ function eliminar(id) {
             }
         });
     }
-}
+};
 /**
  * @autor:godie007
  * @date: 2017/01/11 03:24
@@ -239,10 +239,15 @@ function generarCampos() {
     setTimeout(function() {
         // se elimina el simbolo _ del generador de modulos dinamico
         $("label").each(function(){
-          if ($(this).text().indexOf("_") !== -1) {
-              $(this).text($(this).text().replace("_"," "));
-          }
-        });
+          var str = $(this).text();
+          if (str.indexOf("_") !== -1) {
+              var i = 0, strLength = str.length;
+              for(i; i < strLength; i++) {
+               str = str.replace("_", " ");
+              }
+              $(this).text(str);
+            }
+          });
         mostrarTabla();
     }, 500);
 }
@@ -321,7 +326,7 @@ function generarTitulosDinamicos() {
         'searchable': false,
         'orderable': false,
         render: function(data, type, row) {
-            return '<div class="btn-group"><button type="button" data-toggle="modal" onclick="ver(&quot;'+data+'&quot;);" data-target="#myModal" class="btn btn-default" >Editar</button><button type="button" id="&quot;' + data + '&quot;"class="btn btn-default eliminarR" >Eliminar</button></div>';
+            return '<div class="btn-group"><button type="button" data-toggle="modal" onclick="ver(&quot;'+data+'&quot;);" data-target="#myModal" class="btn btn-default" >Editar</button><button type="button" onclick="eliminar(&quot;'+data+'&quot;);"class="btn btn-default" >Eliminar</button></div>';
         }
     });
     return salida;
@@ -423,9 +428,12 @@ function tomarValores() {
     var sa = JSON.parse(json);
     return sa;
 }
+
 $(document).ready(function() {
 
     generarCampos();
+
+
 
     $("#menuContactos").click();
     $("#menuCientes").click();
@@ -536,8 +544,9 @@ function mostrarTabla() {
     });
 }
 
-
+window.registro = [];
 function mostrar(entrada) {
+  registro = entrada;
     // se hace la adaptacion dinamica a la tabla
     var temp = [];
     var inputs = $('input[type=datetime-local]:not([id*="preview"]),input[type=file]:not([id*="preview"]),input[id^="number-"]:not([id*="preview"]),input[id^="text-"]:not([id*="preview"]),textarea[id^="textarea-"]:not([id*="preview"]),select[id^="select-"]:not([id*="preview"]),input[id^="radio-group-"]:checked:not([id*="preview"]),input[id^="checkbox-"]:not([id*="preview"]),div[class*="radio-group"]:not([class*="preview"])');
@@ -557,9 +566,6 @@ function mostrar(entrada) {
                 label = inputs.eq(inputs.length - 1 - s).parent().parent().find("label").eq(0).text().trim();
             }
             label = label.replace("?", "");
-            if (i === 0) {
-                //console.log(label);
-            }
             temp[i][label] = '';
             temp[i]["Fecha de Actualización"] = '';
             temp[i]["Fecha de Creación"] = '';
@@ -719,6 +725,7 @@ function mostrar(entrada) {
             }
         ]
     });
+
     $("input[type=checkbox]:visible").click(function() {
         $(".eliminar").removeAttr("disabled");
         if ($("input[type=checkbox]:checked").length === 0) {

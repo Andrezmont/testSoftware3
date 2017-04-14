@@ -112,12 +112,28 @@
             req.app.db.models.nivel.find({
             }).sort({
                 "fecha_creacion": -1
-            }).exec(function(err, doc) {
+            }).exec(function(err, indicador) {
                 if (err) {
                     console.log(err);
                 } else {
 
+                  req.app.db.models.area.find({}).exec(function(err, area) {
+                    var doc = indicador;
+                    for (var i = 0; i < doc.length; i++) {
+                      for (var f = 0; f < doc[i].data.length; f++) {
+                        if (doc[i].data[f].titulo ==="Area") {
+                          var idArea = doc[i].data[f].valor;
+                          for (var s = 0; s < area.length; s++) {
+                            if (String(area[s]._id) === String(idArea)) {
+                              doc[i].data[f].valor = area[s].data[0].valor;
+                            }
+                          }
+                        }
+                      }
+                    }
+
                     res.send(doc);
+                  });
                 }
             });
         });

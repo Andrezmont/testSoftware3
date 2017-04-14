@@ -4,6 +4,8 @@ block head
   title Categories / Details
 
 block feet
+  script(src='/layouts/core.min.js?#{cacheBreaker}')
+  script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
   script(src='/views/admin/categories/details.min.js?#{cacheBreaker}')
 
 block body

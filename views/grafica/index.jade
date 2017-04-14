@@ -18,6 +18,12 @@ block head
             i.fa.fa-th-large          
           h5 Indicadores
         .body
+          select.form-control#area
+            option(value="-1") Seleccionar..
+            -for (var i = 0; i < areas.length; i++) {
+              option(value="#{areas[i].id}") #{areas[i].name}
+            -}
+          br
           table.table.table-bordered#tabla
             thead
               tr
@@ -31,3 +37,4 @@ block head
           .wrapper
             .chart
               canvas#chartRadar(width='1045', height='522', style='display: block; width: 1045px; height: 522px;')
+          label#areaF 

@@ -1,1 +1,3 @@
 {"_id":{"$oid":"58ee91fec018076665ff99c2"},"data":[{"valor":"Area Cafetera","titulo":"Nombre","id":"text-1491947187126"}],"fecha_creacion":{"$date":"2017-04-12T20:45:50.193Z"},"empresa":"undefined","usuario":"root","modulo":"area","__v":0}
+{"_id":{"$oid":"58efe40dc8061a4f7152269c"},"data":[{"valor":"Educacion","titulo":"Nombre","id":"text-1491947187126"}],"fecha_creacion":{"$date":"2017-04-13T20:48:13.600Z"},"empresa":"undefined","usuario":"root","modulo":"area","__v":0}
+{"_id":{"$oid":"58efe415c8061a4f7152269d"},"data":[{"valor":"Industrial","titulo":"Nombre","id":"text-1491947187126"}],"fecha_creacion":{"$date":"2017-04-13T20:48:21.472Z"},"empresa":"undefined","usuario":"root","modulo":"area","__v":0}

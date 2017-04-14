@@ -1,6 +1,8 @@
-{"_id":{"$oid":"58ee96a555a43867c8a7e3e6"},"icon":true,"fecha_creacion":{"$date":"2017-04-12T21:05:41.320Z"},"a_attr":{"href":"/admin/nivel/"},"text":"Niveles","parent":"#","id":"1","__v":0}
-{"_id":{"$oid":"58ee96a555a43867c8a7e3e7"},"icon":true,"fecha_creacion":{"$date":"2017-04-12T21:05:41.330Z"},"a_attr":{"href":"/admin/area/"},"text":"Area","parent":"#","id":"j1_2","__v":0}
-{"_id":{"$oid":"58ee96a555a43867c8a7e3e8"},"icon":true,"fecha_creacion":{"$date":"2017-04-12T21:05:41.331Z"},"a_attr":{"href":"/admin/cuestionario/"},"text":"Cuestionario","parent":"#","id":"j1_1","__v":0}
-{"_id":{"$oid":"58ee96a555a43867c8a7e3e9"},"icon":true,"fecha_creacion":{"$date":"2017-04-12T21:05:41.334Z"},"a_attr":{"href":"/admin/empresa/"},"text":"Empresa","parent":"#","id":"j1_3","__v":0}
-{"_id":{"$oid":"58ee96a555a43867c8a7e3ea"},"icon":true,"fecha_creacion":{"$date":"2017-04-12T21:05:41.342Z"},"a_attr":{"href":"/admin/indicador/"},"text":"Indicador","parent":"#","id":"j1_4","__v":0}
-{"_id":{"$oid":"58ee96a555a43867c8a7e3eb"},"icon":true,"fecha_creacion":{"$date":"2017-04-12T21:05:41.347Z"},"a_attr":{"href":"/admin/signup/"},"text":"Registra Usuario","parent":"#","id":"j1_5","__v":0}
+{"_id":{"$oid":"58f070ceedbc753de3abe386"},"icon":true,"fecha_creacion":{"$date":"2017-04-14T06:48:46.993Z"},"a_attr":{"href":"/admin/indicador/"},"text":"Indicador","parent":"#","id":"j1_4","__v":0}
+{"_id":{"$oid":"58f070ceedbc753de3abe387"},"icon":true,"fecha_creacion":{"$date":"2017-04-14T06:48:46.997Z"},"a_attr":{"href":"/admin/area/"},"text":"Area","parent":"#","id":"j1_2","__v":0}
+{"_id":{"$oid":"58f070cfedbc753de3abe388"},"icon":true,"fecha_creacion":{"$date":"2017-04-14T06:48:47.000Z"},"a_attr":{"href":"/admin/nivel/"},"text":"Niveles","parent":"#","id":"1","__v":0}
+{"_id":{"$oid":"58f070cfedbc753de3abe389"},"icon":true,"fecha_creacion":{"$date":"2017-04-14T06:48:47.008Z"},"a_attr":{"href":"/admin/cuestionario/"},"text":"Cuestionario","parent":"#","id":"j1_1","__v":0}
+{"_id":{"$oid":"58f070cfedbc753de3abe38a"},"icon":true,"fecha_creacion":{"$date":"2017-04-14T06:48:47.010Z"},"a_attr":{"href":"/admin/empresa/"},"text":"Empresa","parent":"#","id":"j1_3","__v":0}
+{"_id":{"$oid":"58f070cfedbc753de3abe38b"},"icon":true,"fecha_creacion":{"$date":"2017-04-14T06:48:47.012Z"},"a_attr":{"href":"#"},"text":"Administrar Usuarios","parent":"#","id":"j1_6","__v":0}
+{"_id":{"$oid":"58f070cfedbc753de3abe38c"},"icon":true,"fecha_creacion":{"$date":"2017-04-14T06:48:47.054Z"},"a_attr":{"href":"/admin/signup/"},"text":"Registrar Usuario","parent":"j1_6","id":"j1_5","__v":0}
+{"_id":{"$oid":"58f070cfedbc753de3abe38d"},"icon":true,"fecha_creacion":{"$date":"2017-04-14T06:48:47.057Z"},"a_attr":{"href":"/admin/users/"},"text":"Lista de Usuarios","parent":"j1_6","id":"j1_7","__v":0}

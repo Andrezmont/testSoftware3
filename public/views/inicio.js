@@ -39,3 +39,4 @@ require('./../js/form-render.js');
 require('./../js/form-render.js');
 require('./../vendor/bootstrap/js/dropdown.js');
 require('./../js/cargue.js');
+require('./..//views/dinamico/index.js');

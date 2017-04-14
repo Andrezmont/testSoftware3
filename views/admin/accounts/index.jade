@@ -7,11 +7,14 @@ block neck
   link(rel='stylesheet', href='/views/admin/accounts/index.min.css?#{cacheBreaker}')
 
 block feet
+  script(src='/layouts/core.min.js?#{cacheBreaker}')
+  script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
   script(src='/views/admin/accounts/index.min.js?#{cacheBreaker}')
 
 block body
-  div.row
-    div.col-xs-12
+  div.col-sm-11
+  .col-lg-12
+    .box
       div#header
       div#filters
       div#results-table

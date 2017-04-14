@@ -4,11 +4,14 @@ block head
   title Users / Details
 
 block feet
+  script(src='/layouts/core.min.js?#{cacheBreaker}')
+  script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
   script(src='/views/admin/users/details.min.js?#{cacheBreaker}')
 
 block body
-  div.row
-    div.col-xs-12
+  div.col-sm-11
+  .col-lg-12
+    .box
       div#header
       div#identity
       div#roles

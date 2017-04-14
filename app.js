@@ -74,7 +74,6 @@
       app.db.models.menu.find({}).sort({"fecha_creacion": -1}).exec(function(err,doc) {
           console.log(doc.length);
           req.app.locals.menu = doc; // set your layout here
-          console.log("------------->Entro");
           next(); // pass control to the next handler
       });
     });
