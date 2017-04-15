@@ -236,20 +236,6 @@ function generarCampos() {
 
         }
     });
-    setTimeout(function() {
-        // se elimina el simbolo _ del generador de modulos dinamico
-        $("label").each(function(){
-          var str = $(this).text();
-          if (str.indexOf("_") !== -1) {
-              var i = 0, strLength = str.length;
-              for(i; i < strLength; i++) {
-               str = str.replace("_", " ");
-              }
-              $(this).text(str);
-            }
-          });
-        mostrarTabla();
-    }, 500);
 }
 /**
  * @autor:godie007
@@ -258,7 +244,16 @@ function generarCampos() {
  * y saca sus etiquetas para dar los titulos a la tabla del plugin datatable
  **/
 function generarTitulosDinamicos() {
-
+  $("label").each(function(){
+    var str = $(this).text();
+    if (str.indexOf("_") !== -1) {
+        var i = 0, strLength = str.length;
+        for(i; i < strLength; i++) {
+         str = str.replace("_", " ");
+        }
+        $(this).text(str);
+      }
+    });
     var json = '[';
     var inputs = $('input[type=datetime-local]:not([id*="preview"]),input[type=file]:not([id*="preview"]),input[id^="number-"]:not([id*="preview"]),input[id^="text-"]:not([id*="preview"]),textarea[id^="textarea-"]:not([id*="preview"]),select[id^="select-"]:not([id*="preview"]),input[id^="radio-group-"]:checked:not([id*="preview"]),input[id*="checkbox"]:not([id*="preview"]):not([id*="group"])');
     var inputs2 = $('div[class*="field-checkbox-group"]:not([class*="preview"])');
