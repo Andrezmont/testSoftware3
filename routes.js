@@ -224,6 +224,8 @@
 
     app.get('/account/grafica/', require('./views/grafica/index').grafica);
     app.post('/account/grafica/', require('./views/grafica/index').data);
+    app.post('/account/grafica/cuestionario/', require('./views/grafica/index').cuestionario);
+
 
 
     // account >Facturacion
