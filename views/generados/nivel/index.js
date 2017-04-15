@@ -194,10 +194,10 @@
             'username': 1
         }).exec(function(err, user) {
             if (err) {
-                console.log(err);
+                console.log(err); 
             }
             req.app.db.models.campo.find({
-                'modulo': 'indicador'
+                'modulo': 'nivel'
             }).sort({
                 'indice': 1
             }).exec(function(err, doc) {

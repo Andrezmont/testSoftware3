@@ -195,7 +195,7 @@
                 console.log(err);
             }
             req.app.db.models.campo.find({
-                'modulo': 'indicador'
+                'modulo': 'cuestionario'
             }).sort({
                 'indice': 1
             }).exec(function(err, doc) {
