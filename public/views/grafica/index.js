@@ -97,6 +97,7 @@ $(document).ready(function() {
        $("button[name='next']").attr('style','background-color: #bf0000;');
        $("button[name='next']").prop('disabled', true);
        $("table.table").hide();
+       $("#formCuestionario").hide();
      }else {
        $("button[name='next']").attr('style','background-color: #00ACC2;');
        $("button[name='next']").prop('disabled', false);
