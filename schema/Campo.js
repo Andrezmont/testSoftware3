@@ -25,7 +25,6 @@ exports = module.exports = function(app, mongoose) {
     'indice': { type: Number},
     'usuario': { type: String, default: '' },
     'modulo': { type: String, default: '' },
-    'empresa': { type: String, default: ''},
     fecha_creacion: { type: Date, default: Date.now }
   }
 );

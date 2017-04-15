@@ -195,15 +195,31 @@
                 console.log(err);
             }
             req.app.db.models.campo.find({
-                'modulo': 'cuestionario'
+                'modulo': 'indicador'
             }).sort({
                 'indice': 1
             }).exec(function(err, doc) {
-
                 if (err) {
                     console.log("----->" + err);
                 } else {
-                    res.send(doc);
+                  /**
+                  * @autor:godie007
+                  * @date: 2017/04/14 22:56
+                  * Se programa la lista de valores para Areas para el plugin FormBuilder
+                  **/
+                  req.app.db.models.area.find({},{'data':1},function(err,area) {
+                    console.log(area);
+                    var temp = [];
+                    for (var i = 0; i < doc.length; i++) {
+                      if (doc[i].label ==="Area") {
+                        for (var h = 0; h < area.length; h++) {
+                          doc[i].values[h] = {'value':area[h]._id,'label':area[h].data[0].valor};
+                        }
+                      }
+                      temp.push(doc[i]);
+                    }
+                    res.send(temp);
+                  });
                 }
             });
         });

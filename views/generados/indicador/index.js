@@ -43,7 +43,6 @@
         });
     };
     exports.eliminar = function(req, res, next) {
-        console.log("delete " + JSON.stringify(req.body));
 
         req.app.db.models.indicador.findByIdAndRemove(req.body.id, function(err, account) {
             if (err) {
@@ -167,7 +166,6 @@
                     console.log(err);
                     res.send('Error');
                 } else {
-                    console.log('Eliminado');
                     res.send('Ok');
                 }
             });
@@ -176,7 +174,6 @@
 
     exports.ingresar2 = function(req, res) {
         var item = req.body;
-        console.log(item);
         req.app.db.models.campo.create(item, function(err, doc) {
             if (err) {
                 console.log("--->" + err);
@@ -200,11 +197,27 @@
             }).sort({
                 'indice': 1
             }).exec(function(err, doc) {
-
                 if (err) {
                     console.log("----->" + err);
                 } else {
-                    res.send(doc);
+                  /**
+                  * @autor:godie007
+                  * @date: 2017/04/14 22:56
+                  * Se programa la lista de valores para Areas para el plugin FormBuilder
+                  **/
+                  req.app.db.models.area.find({},{'data':1},function(err,area) {
+                    console.log(area);
+                    var temp = [];
+                    for (var i = 0; i < doc.length; i++) {
+                      if (doc[i].label ==="Area") {
+                        for (var h = 0; h < area.length; h++) {
+                          doc[i].values[h] = {'value':area[h]._id,'label':area[h].data[0].valor};
+                        }
+                      }
+                      temp.push(doc[i]);
+                    }
+                    res.send(temp);
+                  });
                 }
             });
         });
@@ -242,7 +255,6 @@
             callback(null, './public/uploads');
         },
         filename: function(request, file, callback) {
-            console.log(file);
             callback(null, file.originalname);
         }
     });
