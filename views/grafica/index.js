@@ -17,6 +17,25 @@
         });
       });
   };
+  exports.cuestionario = function(req, res) {
+    req.app.db.models.cuestionario.find({'data.valor': req.body.area},{'data':1}).exec(function(err, ask) {
+      if (err) console.log(err);
+      var ars= [];
+      for (var i = 0; i < ask.length; i++) {
+        ars.push({
+          'id':ask[i]._id,
+          'respuesta':ask[i].data[0].valor,
+          'OD':ask[i].data[2].valor,
+          'OC':ask[i].data[3].valor,
+          'OB':ask[i].data[4].valor,
+          'OA':ask[i].data[5].valor,
+          'text':ask[i].data[6].valor
+        });
+      }
+      res.send({'ask':ars});
+    });
+
+  };
 
   exports.data = function(req, res) {
       req.app.db.models.indicador.find({'data.valor': req.body.area},{'data':1}).exec(function(err, info) {

@@ -2,10 +2,11 @@ extends ../../layouts/account
 block head
   title Grafica
 block feet
-  script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js', type='text/javascript')
+  script(src='/vendor/jquery/jquery.js')
   script(src='/js/bootstrap.min.js', type='text/javascript')
   script(src='/js/cargue.js', type='text/javascript')
-  script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.js', type='text/javascript')
+  script(src='/js/Chart.js', type='text/javascript')
+  script(src='/js/bootstrap-checkbox.js', type='text/javascript')
   script(src='/views/grafica/index.js', type='text/javascript')
   
 block head
@@ -13,28 +14,136 @@ block head
   block body
     .col-lg-10
       .box
+        style.
+          .radio {
+            margin-left:34px;
+          }
         header.dark
           .icons
             i.fa.fa-th-large          
           h5 Indicadores
         .body
-          select.form-control#area
-            option(value="-1") Seleccionar..
-            -for (var i = 0; i < areas.length; i++) {
-              option(value="#{areas[i].id}") #{areas[i].name}
-            -}
-          br
-          table.table.table-bordered#tabla
-            thead
-              tr
-                th Nombre
-                th Descripción
-                th Minimo
-                th Maximo
-                th Valor
-            tbody
-          button.btn#graficar(type='submit') Graficar
+          #formInicio
+            label Seleccionar Area
+            select.form-control#area
+              option(value="-1") Seleccionar..
+              -for (var i = 0; i < areas.length; i++) {
+                option(value="#{areas[i].id}") #{areas[i].name}
+              -}
+            br
+            table.table.table-bordered#tabla
+              thead
+                tr
+                  th Nombre
+                  th Descripción
+                  th Minimo
+                  th Maximo
+                  th Valor
+              tbody
+          #formCuestionario
+          .card.step-progress
+            .step-slider
+              .step-slider-item(data-id='step1')
+              .step-slider-item(data-id='step2')
+            .step-content
+              #step1.step-content-body Paso 1
+              #step2.step-content-body.out Paso 2
+              #stepLast.step-content-body.out Generado Exitosamente
+              .step-content-foot
+                button.active(type='button', name='prev') Anterior
+                button.active(type='button', name='next') Siguiente
+                button.active.out(type='button', name='finish') Finalizar
           .wrapper
             .chart
               canvas#chartRadar(width='1045', height='522', style='display: block; width: 1045px; height: 522px;')
           label#areaF 
+          style.
+            .card {
+            position: relative;
+            margin-bottom: 24px;
+            background-color: #fff;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+            }
+            .step-progress {
+            padding: 16px;
+            background-color: #FAFAFA;
+            margin: 0 auto;
+            }
+            .step-progress .step-slider {
+            width: 100%;
+            }
+            .step-progress .step-slider .step-slider-item {
+            width: 50%;
+            height: 1px;
+            position: relative;
+            float: left;
+            background-color: #E0E0E0;
+            }
+            .step-progress .step-slider .step-slider-item:after {
+            content: "";
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            top: -6px;
+            right: 0;
+            background-color: #FAFAFA;
+            border: 1px solid #E0E0E0;
+            border-radius: 50%;
+            z-index: 2;
+            transition: all 0.3s ease-out 0.5s;
+            -webkit-transition: all 0.3s ease-out 0.5s;
+            }
+            .step-progress .step-slider .step-slider-item:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background-color: #B0BEC5;
+            z-index: 1;
+            -webkit-transition: all 0.5s ease-out;
+            }
+            .step-progress .step-slider .step-slider-item.active:before {
+            width: 100%;
+            background-color: #FF8F00;
+            }
+            .step-progress .step-slider .step-slider-item.active:after {
+            border-color: #FF8F00;
+            }
+            .step-content {
+            padding: 16px 0;
+            }
+            .step-content .step-content-foot {
+            text-align: right;
+            }
+            .step-content .step-content-foot button {
+            border: 0;
+            padding: 8px 16px;
+            background-color: #CFD8DC;
+            font-size: 14px;
+            border-radius: 3px;
+            outline: 0;
+            }
+            .step-content .step-content-foot button:active {
+            background-color: rgba(255, 255, 255, 0.2);
+            }
+            .step-content .step-content-foot button.out {
+            display: none;
+            }
+            .step-content .step-content-foot button.disable {
+            background-color: #ECEFF1;
+            }
+            .step-content .step-content-foot button.active {
+            background-color: #00ACC1;
+            color: white;
+            }
+            .step-content .step-content-body {
+            padding: 16px 0;
+            text-align: center;
+            font-size: 18px;
+            }
+            .step-content .step-content-body.out {
+            display: none;
+            }
