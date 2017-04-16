@@ -34,7 +34,21 @@
       }
       res.send({'ask':ars});
     });
-
+  };
+  exports.niveles = function(req, res) {
+    req.app.db.models.nivel.find({},{'data':1}).exec(function(err, ask) {
+      if (err) console.log(err);
+      var ars= [];
+      for (var i = 0; i < ask.length; i++) {
+        ars.push({
+          'max':parseInt(ask[i].data[0].valor),
+          'min':parseInt(ask[i].data[1].valor),
+          'nivel':ask[i].data[3].valor
+        });
+      }
+      console.log(ars);
+      res.send({'ask':ars});
+    });
   };
 
   exports.data = function(req, res) {

@@ -225,6 +225,7 @@
     app.get('/account/grafica/', require('./views/grafica/index').grafica);
     app.post('/account/grafica/', require('./views/grafica/index').data);
     app.post('/account/grafica/cuestionario/', require('./views/grafica/index').cuestionario);
+    app.post('/account/grafica/nivel/', require('./views/grafica/index').niveles);
 
 
 
