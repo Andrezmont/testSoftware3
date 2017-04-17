@@ -72,7 +72,6 @@
     app.use(function (req, res, next) {
       // se parametriza el menu principal de la cuenta de Usuario
       app.db.models.menu.find({}).sort({"fecha_creacion": -1}).exec(function(err,doc) {
-          console.log(doc.length);
           req.app.locals.menu = doc; // set your layout here
           next(); // pass control to the next handler
       });

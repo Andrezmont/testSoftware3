@@ -54,9 +54,17 @@ function calculateEdges(data) {
   };
 }
 
-window.engine = {
+var engine = {
   calculateArea: calculateArea,
   calculatePercentage: calculatePercentage,
   calculateLevel: calculateLevel,
   calculateEdges: calculateEdges,
 };
+
+if ( typeof window !== 'undefined' && window ) {
+  window.engine = engine;
+}
+
+if ( typeof module !== 'undefined' && module ) {
+  module.exports = engine;
+}
