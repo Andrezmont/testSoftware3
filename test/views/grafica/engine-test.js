@@ -28,7 +28,7 @@ describe('Engine', function() {
     });
 
     it('should return level 2', function() {
-      assert.equal(5, engine.calculateLevel(doc, 15));
+      assert.equal(2, engine.calculateLevel(doc, 15));
     });
   });
 });
