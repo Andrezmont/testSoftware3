@@ -1,4 +1,5 @@
 var data; // variable que almacena los indicadores relacionados a un area
+var engine = window.engine;
 
 $(document).ready(function() {
     $("#tabla").hide();
@@ -190,14 +191,10 @@ function generarGrafica() {
      * @date: 2017/04/15 02:45
      * Se realizan los calculos para determinar el area total de la grafica de radar
      **/
-    var salida1 = [];
-    var salida2 = [];
-    for (var s = 0; s < data.length; s++) {
-        salida1.push(data[s].titulo);
+    var result = engine.calculateEdges(data);
+    var labels = result.labels;
+    var values = result.values;
 
-        var caluculo1 = Math.abs(parseInt(100 * (parseInt($("#ent" + s).val()) - data[s].min) / (data[s].max - data[s].min))); // se hace el calculo del procentaje para cada areista de la grafica radial
-        salida2.push(caluculo1);
-    }
     $.ajax({
         url: "/account/grafica/cuestionario/",
         type: 'POST',
@@ -221,28 +218,10 @@ function generarGrafica() {
                 }
             }
             var porcent = (contador * 100) / doc.ask.length;
-            salida1.push("Questionnaire");
-            salida2.push(porcent);
+            labels.push("Questionnaire");
+            values.push(porcent);
 
-            var arreglo = salida2;
-            var areaActual = 0;
-            var angulo = 360 / arreglo.length;
-            for (var h = 0; h < arreglo.length; h++) {
-                var a = arreglo[h];
-                var b = arreglo[h + 1];
-                if (h < arreglo.length - 1) {
-                    a = arreglo[h];
-                    b = arreglo[h + 1];
-                } else {
-                    a = arreglo[h];
-                    b = arreglo[0];
-                }
-                var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2) - 2 * a * b * Math.cos(toRadians(angulo)));
-
-                var s1 = (a + b + c) / 2;
-                var area = Math.sqrt(s1 * (s1 - a) * (s1 - b) * (s1 - c));
-                areaActual += area;
-            }
+            var areaActual = engine.calculateArea(values);
             $("#areaF").text("Area Actual: " + areaActual);
 
             //area maxima para 21 indicadores 30949.293313144917
@@ -254,19 +233,15 @@ function generarGrafica() {
                     console.log(respuesta);
                 },
                 success: function(doc) {
-                    var areaTotal = 30949.293313144917; // area total de 21 indicadores
-                    var p_total = 100 - Math.abs(((areaActual - areaTotal) / areaTotal) * 100);
+                    var p_total = engine.calculatePercentage(areaActual);
+                    $("#procentF").text("Procentaje Actual: " + p_total + "%");
 
-                    for (var i = 0; i < doc.ask.length; i++) {
-                        if (p_total >= doc.ask[i].min && p_total <= doc.ask[i].max) {
-                            $("#procentF").text("Procentaje Actual: " + p_total + "%");
-                            $("#nivelA").text("La empresa esta en " + doc.ask[i].nivel);
-                        }
-                    }
+                    var nivel = engine.calculateLevel(doc, p_total);
+                    $("#nivelA").text("La empresa esta en " + nivel);
                 }
             });
 
-            graficar(salida1, salida2);
+            graficar(labels, values);
         }
     });
 
