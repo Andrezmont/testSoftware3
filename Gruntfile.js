@@ -9,6 +9,7 @@ module.exports = function(grunt) {
         entry: {
           inicio: './public/views/inicio.js',
           layout: './public/views/layout.js',
+          cuenta: './public/views/account/cuenta.js',
         },
         output: {
           filename: '[name]-bundle.js',

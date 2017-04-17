@@ -1,3 +1,7 @@
+function toRadians(angle) {
+  return angle * (Math.PI / 180);
+}
+
 function calculateArea(arreglo) {
   var areaActual = 0;
   var angulo = 360 / arreglo.length;

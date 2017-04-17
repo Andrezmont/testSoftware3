@@ -52,6 +52,7 @@ $(document).ready(function() {
         $("#formCuestionario").hide();
         $("#chartRadar").show();
         $("#resultado").show();
+        $('button[name="prev"]').hide();
         generarGrafica();
 
         $(stepItem[stepItem.length - 1]).addClass('active');
@@ -297,7 +298,7 @@ function graficar(entrada, entrada2) {
  * @date: 2017/04/13 14:02
  * Funcion para limitar el los campos de texto a solo el rango que este configurado en la seccion de indicadores
  **/
-function minmax(value, min, max) {
+window.minmax =function(value, min, max) {
     if (parseInt(value) < min || isNaN(parseInt(value))) {
         return min;
     } else {
@@ -327,8 +328,4 @@ function minmax(value, min, max) {
         }
     }
 
-}
-
-function toRadians(angle) {
-    return angle * (Math.PI / 180);
 }
