@@ -17,6 +17,11 @@ body {
     }
 }
 
+.col-lg-10 {
+  position: relative;
+  left: 8%;
+}
+
 #wrapper {
     padding-left: 0;
 }
