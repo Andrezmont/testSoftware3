@@ -225,8 +225,6 @@ function generarGrafica() {
             var areaActual = engine.calculateArea(values);
             $("#areaF").text("Area Actual: " + areaActual);
 
-            //area maxima para 21 indicadores 30949.293313144917
-
             $.ajax({
                 url: "/account/grafica/nivel/",
                 type: 'POST',
@@ -234,7 +232,7 @@ function generarGrafica() {
                     console.log(respuesta);
                 },
                 success: function(doc) {
-                    var p_total = engine.calculatePercentage(areaActual);
+                    var p_total = engine.calculatePercentage(areaActual,values.length);
                     $("#procentF").text("Procentaje Actual: " + p_total + "%");
 
                     var nivel = engine.calculateLevel(doc, p_total);
@@ -321,11 +319,11 @@ window.minmax =function(value, min, max) {
              * @date: 2017/04/13 14:31
              * Plugin para mostrar Notificación emergente de Advertenca
              **/
-            toastr.warning("El valor deve estar en el intervalo [" + min + "," + max + "]", "Importante!");
+            toastr.warning("El valor debe estar en el intervalo [" + min + "," + max + "]", "Importante!");
             return max;
         } else {
             return value;
         }
     }
 
-}
+};

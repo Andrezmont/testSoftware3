@@ -25,8 +25,12 @@ function calculateArea(arreglo) {
   return areaActual;
 }
 
-function calculatePercentage(areaActual) {
-  var areaTotal = 30949.293313144917; // area total de 21 indicadores
+function calculatePercentage(areaActual,aristas) {
+  var array = [];
+  for (var i = 0; i < aristas; i++) {
+    array[i] = 100;
+  }
+  var areaTotal = calculateArea(array); // area total de 21 indicadores
   return 100 - Math.abs(((areaActual - areaTotal) / areaTotal) * 100);
 }
 
