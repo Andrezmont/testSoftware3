@@ -1,4 +1,6 @@
 node_modules
 .nodemonignore
-scannerwork
 sonar
+.scannerwork
+sonar-project.properties
+.lock

@@ -41,6 +41,7 @@
     "helmet": "^0.9.1",
     "jade": "^1.11.0",
     "jquery": "^2.2.4",
+    "jquery-ui": "^1.12.1",
     "jsreport": "^1.0.9",
     "jsreport-core": "^1.0.6",
     "jsreport-jsrender": "^1.0.1",
