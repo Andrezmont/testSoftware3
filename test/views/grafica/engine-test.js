@@ -10,11 +10,11 @@ describe('Engine', function() {
   **/
   describe('#calculatePercentage', function() {
     it('should return 100% when everything is full', function() {
-      assert.equal(100, engine.calculatePercentage(30949.293313144917));
+      assert.equal(100, engine.calculatePercentage(30949.293313144917,21));
     });
 
     it('should return 0% when area is 0', function() {
-      assert.equal(0, engine.calculatePercentage(0));
+      assert.equal(0, engine.calculatePercentage(0,21));
     });
   });
 
