@@ -226,6 +226,9 @@
     app.post('/account/grafica/', require('./views/grafica/index').data);
     app.post('/account/grafica/cuestionario/', require('./views/grafica/index').cuestionario);
     app.post('/account/grafica/nivel/', require('./views/grafica/index').niveles);
+    app.post('/account/grafica/registro/', require('./views/grafica/index').registro);
+    app.get('/account/grafica/registro/', require('./views/grafica/index').historial);
+
 
 
 

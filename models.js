@@ -16,6 +16,7 @@
     require('./schema/Campo')(app, mongoose);
     require('./schema/Menu')(app, mongoose);
     require('./schema/empresa')(app, mongoose);
+    require('./schema/registro')(app, mongoose);
     //then regular docs
     require('./schema/User')(app, mongoose);
     require('./schema/Admin')(app, mongoose);

@@ -16,6 +16,8 @@ block head
           h5 Formulario para analizar el nivel de Madurez Empresarial.
         .body
           #formInicio
+            div(id="usuario", class="#{usuario}")
+            div(id="empresa", class="#{empresa}")
             label Seleccionar Area
             select.form-control#area
               option(value="-1") Seleccionar..
@@ -31,6 +33,7 @@ block head
                   th Minimo
                   th Maximo
                   th Valor
+                  th Fórmula
               tbody
           #formCuestionario
           .card.step-progress
@@ -40,16 +43,15 @@ block head
             .step-content
               #step1.step-content-body Paso 1
               #step2.step-content-body.out Paso 2
-              #stepLast.step-content-body.out Generado Exitosamente
+              #stepLast.step-content-body.out 
+                .wrapper
+                  .chart
+                    canvas#chartRadar(width='1045', height='522', style='display: block; width: 1045px; height: 522px;')
+              #resultado
+                li#areaF 
+                li#procentF
+                li#nivelA
               .step-content-foot
                 button.active(type='button', name='prev') Anterior
                 button.active(type='button', name='next') Siguiente
                 button.active.out(type='button', name='finish') Finalizar
-          .wrapper
-            .chart
-              canvas#chartRadar(width='1045', height='522', style='display: block; width: 1045px; height: 522px;')
-          br
-          #resultado
-            li#areaF 
-            li#procentF
-            li#nivelA

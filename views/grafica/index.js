@@ -2,7 +2,7 @@
   'use strict';
 
   exports.grafica = function(req, res) {
-      req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
+      req.app.db.models.User.findById(req.user.id, {'username':1,'empresa':1}).exec(function(err, user) {
           if (err) console.log(err);
           req.app.db.models.area.find({},{'data':1}).exec(function(err, areas) {
               if (err) {
@@ -13,7 +13,7 @@
                 for (var i = 0; i < areas.length; i++) {
                   ars.push({'id':areas[i]._id,'name':areas[i].data[0].valor});
                 }
-          res.render('grafica/index',{'areas':ars});
+          res.render('grafica/index',{'areas':ars,'usuario':user.username,'empresa':user.empresa});
         });
       });
   };
@@ -46,8 +46,25 @@
           'nivel':ask[i].data[3].valor
         });
       }
-      console.log(ars);
       res.send({'ask':ars});
+    });
+  };
+  exports.registro = function(req, res) {
+    var item = req.body;
+    //item.data.campos[0].valor = parseInt(item[0].data.campos[0].valor);
+    req.app.db.models.registro.create(item, function(err, doc) {
+        if (err) {
+            console.log(err);
+            res.send('Error');
+        } else {
+            res.send('Ok');
+        }
+    });
+  };
+  exports.historial = function(req, res) {
+    req.app.db.models.registro.find({}).exec(function(err, ask) {
+      if (err) console.log(err);
+      res.render('grafica/historial',{'historial':ask});
     });
   };
 
@@ -65,6 +82,7 @@
             var max;
             var min;
             var bandera = false;
+            var formula;
             for (var s = 0; s < info[i].data.length; s++) {
               if (info[i].data[s].valor ==="Activo" ) {
                 bandera = true;
@@ -81,9 +99,12 @@
               if (info[i].data[s].titulo === 'Descripción') {
                 descripcion = info[i].data[s].valor;
               }
+              if (info[i].data[s].titulo === 'Fórmula') {
+                formula = info[i].data[s].valor;
+              }
             }
             if (bandera) {
-              entrada.push ({'titulo' : titulo,'descripcion': descripcion,'max': parseInt(max),'min': parseInt(min)});
+              entrada.push ({'titulo' : titulo,'descripcion': descripcion,'max': parseInt(max),'min': parseInt(min),'formula':formula});
             }
           }
 

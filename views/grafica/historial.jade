@@ -1,0 +1,71 @@
+extends ../../layouts/account
+block head
+  title Historial
+block feet
+  
+block head
+  title Historial
+  block body
+    .col-lg-10
+      .box
+        header.dark
+          .icons
+            i.fa.fa-th-large          
+          h5 Historial de Consultas
+        .body
+          table.table.table-bordered#tabla
+            thead
+              tr
+                th Area Actual
+                th Area Total
+                th Nivel
+                th Procentaje
+                th Usuario
+                th Fecha de Creación
+            tbody
+              -function formatAMPM(d) {
+              -    var today = d;
+              -    var h = today.getHours();
+              -    var m = today.getMinutes();
+              -    var s = today.getSeconds();
+              -    var ampm = h >= 12 ? 'PM' : 'AM';
+              -    h = h ? h : 12; // the hour '0' should be '12'
+              -    h = (h % 12 == 0) ? 12 : h % 12;
+              -    m = m < 10 ? '0' + m : m;
+              -    s = s < 10 ? '0' + s : s;
+              -    return (h + ':' + m + ':' + s + ' ' + ampm);
+              -} 
+              -var x;
+              -for (x in historial) {
+                tr   
+                  td #{historial[x].a_actual}
+                  td #{historial[x].a_total}
+                  td #{historial[x].nivel}
+                  td(align="center") #{parseInt(historial[x].porcentaje?historial[x].porcentaje:0)}%
+                  td #{historial[x].usuario}
+                  -var date = new Date();
+                  -var fecha = date.getDate() + '/' + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + formatAMPM(historial[x].fecha_creacion);
+                  td #{fecha}
+              -}
+      link(rel='stylesheet', href='/css/jquery.dataTables.css')
+      link(rel='stylesheet', href='/css/dataTables.tableTools.css')
+      link(rel='stylesheet', href='/css/jquery-ui.css')
+      link(rel='stylesheet', href='/css/buttons.jqueryui.min.css')
+      link(rel='stylesheet', href='/css/dataTables.jqueryui.min.css')
+      link(rel='stylesheet', href='/views/css/demo.min.css')
+      link(rel='stylesheet', href='/views/css/form-builder.min.css')
+      link(rel='stylesheet', href='/views/css/form-render.min.css')
+      link(rel='stylesheet', href='/css/jquery.dataTables.css')
+      link(rel='stylesheet', href='/css/dataTables.tableTools.css')
+      link(rel='stylesheet', href='/css/buttons.bootstrap.min.css')
+      link(rel='stylesheet', href='/css/buttons.dataTables.min.css')
+      link(rel='stylesheet', href='/css/select.dataTables.min.css')
+      link(rel='stylesheet', href='/css/responsive.dataTables.min.css')
+      
+      script(src='/views/js/jquery.js')
+      script(src='/js/bootstrap.min.js')
+      script(src='/js/jquery.dataTables.min.js')
+      script(src='/js/cargue.js')
+      script
+        $("#tabla").DataTable();
+    

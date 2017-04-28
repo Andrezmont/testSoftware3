@@ -26,12 +26,17 @@ function calculateArea(arreglo) {
 }
 
 function calculatePercentage(areaActual,aristas) {
+
+  var areaTotal = calculateAreaTotal(aristas); // area total de 21 indicadores
+  return 100 - Math.abs(((areaActual - areaTotal) / areaTotal) * 100);
+}
+
+function calculateAreaTotal(aristas) {
   var array = [];
   for (var i = 0; i < aristas; i++) {
     array[i] = 100;
   }
-  var areaTotal = calculateArea(array); // area total de 21 indicadores
-  return 100 - Math.abs(((areaActual - areaTotal) / areaTotal) * 100);
+  return calculateArea(array); // area total de 21 indicadores
 }
 
 function calculateLevel(doc, p_total) {
@@ -67,6 +72,7 @@ var engine = {
   calculatePercentage: calculatePercentage,
   calculateLevel: calculateLevel,
   calculateEdges: calculateEdges,
+  calculateAreaTotal:calculateAreaTotal,
 };
 
 if ( typeof window !== 'undefined' && window ) {

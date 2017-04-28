@@ -53,6 +53,7 @@ $(document).ready(function() {
         $("#chartRadar").show();
         $("#resultado").show();
         $('button[name="prev"]').hide();
+        $("button[name='finish']").hide();
         generarGrafica();
 
         $(stepItem[stepItem.length - 1]).addClass('active');
@@ -136,7 +137,7 @@ $(document).ready(function() {
                     $("#tabla tbody tr").remove();
                     for (var i = 0; i < respuesta.length; i++) {
                         var campoTexto = '<input id="ent' + i + '" class="input-medium"  min="' + respuesta[i].min + '" max="' + respuesta[i].max + '" step="1" onblur="this.value = minmax(this.value, ' + respuesta[i].min + ', ' + respuesta[i].max + ')" type="number"value="' + respuesta[i].min + '">';
-                        $("#tabla tbody").append('<tr><td>' + respuesta[i].titulo + '</td><td>' + respuesta[i].descripcion + '</td><td>' + respuesta[i].min + '</td><td>' + respuesta[i].max + '</td><td>' + campoTexto + '</td>' + '</tr>');
+                        $("#tabla tbody").append('<tr><td>' + respuesta[i].titulo + '</td><td>' + respuesta[i].descripcion + '</td><td>' + respuesta[i].min + '</td><td>' + respuesta[i].max + '</td><td>' + campoTexto + '</td>' + '<td>' + respuesta[i].formula + '</td></tr>');
                     }
                     $("input:visible").eq(0).trigger('focus');
                 }
@@ -233,10 +234,12 @@ function generarGrafica() {
                 },
                 success: function(doc) {
                     var p_total = engine.calculatePercentage(areaActual,values.length);
-                    $("#procentF").text("Procentaje Actual: " + p_total + "%");
-
                     var nivel = engine.calculateLevel(doc, p_total);
+
+                    $("#procentF").text("Procentaje Actual: " + p_total + "%");
                     $("#nivelA").text("La empresa esta en " + nivel);
+                    var areaTotal = engine.calculateAreaTotal(values.length);
+                    window.saveCaculus(areaTotal,areaActual,nivel,p_total);
                 }
             });
 
@@ -245,6 +248,27 @@ function generarGrafica() {
     });
 
 }
+window.saveCaculus = function(a_total,a_actual,nivel,porcentaje) {
+  console.log("Registro Guardado!");
+  $.ajax({
+      url: "/account/grafica/registro/",
+      type: 'POST',
+      data:{
+        'a_total':a_total,
+        'a_actual':a_actual,
+        'nivel':nivel,
+        'porcentaje':porcentaje,
+        'usuario':$("#usuario").attr("class"),
+        'empresa':$("#empresa").attr("class")
+      },
+      error: function(respuesta) {
+          console.log(respuesta);
+      },
+      success: function(doc) {
+          console.log(doc);
+      }
+  });
+};
 /**
  * @autor:godie007
  * @date: 2017/04/13 14:16
