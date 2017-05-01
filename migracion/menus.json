@@ -1,9 +1,9 @@
-{"_id":{"$oid":"58f46b85702b6834821817d9"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.387Z"},"a_attr":{"href":"/admin/indicador/"},"text":"Indicador","parent":"#","id":"j1_4","__v":0}
 {"_id":{"$oid":"58f46b85367c95347d5c1db4"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.570Z"},"a_attr":{"href":"/admin/area/"},"text":"Area","parent":"#","id":"j1_2","__v":0}
-{"_id":{"$oid":"58f46b85702b6834821817da"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.606Z"},"a_attr":{"href":"/admin/nivel/"},"text":"Niveles","parent":"#","id":"1","__v":0}
 {"_id":{"$oid":"58f46b85367c95347d5c1db5"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.659Z"},"a_attr":{"href":"/admin/cuestionario/"},"text":"Cuestionario","parent":"#","id":"j1_1","__v":0}
+{"_id":{"$oid":"58f46b85367c95347d5c1db6"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.893Z"},"a_attr":{"href":"/admin/users/"},"text":"Lista de Usuarios","parent":"j1_6","id":"j1_7","__v":0}
+{"_id":{"$oid":"58f46b85702b6834821817d9"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.387Z"},"a_attr":{"href":"/admin/indicador/"},"text":"Indicador","parent":"#","id":"j1_4","__v":0}
+{"_id":{"$oid":"58f46b85702b6834821817da"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.606Z"},"a_attr":{"href":"/admin/nivel/"},"text":"Niveles","parent":"#","id":"1","__v":0}
 {"_id":{"$oid":"58f46b85702b6834821817db"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.696Z"},"a_attr":{"href":"/admin/empresa/"},"text":"Empresa","parent":"#","id":"j1_3","__v":0}
 {"_id":{"$oid":"58f46b85702b6834821817dc"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.746Z"},"a_attr":{"href":"#"},"text":"Administrar Usuarios","parent":"#","id":"j1_6","__v":0}
 {"_id":{"$oid":"58f46b85702b6834821817dd"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.795Z"},"a_attr":{"href":"/admin/signup/"},"text":"Registrar Usuario","parent":"j1_6","id":"j1_5","__v":0}
-{"_id":{"$oid":"58f46b85367c95347d5c1db6"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.893Z"},"a_attr":{"href":"/admin/users/"},"text":"Lista de Usuarios","parent":"j1_6","id":"j1_7","__v":0}
 {"_id":{"$oid":"58f46b85702b6834821817de"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.935Z"},"a_attr":{"href":"/admin/administrators"},"text":"Administradores","parent":"j1_6","id":"j1_8","__v":0}
