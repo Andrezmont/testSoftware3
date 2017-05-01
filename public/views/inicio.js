@@ -36,5 +36,5 @@ require('./../js/jszip.min.js');
 require('./../js/form-builder.js');
 require('./../js/form-render.js');
 require('./../vendor/bootstrap/js/dropdown.js');
-require('./../js/cargue.js');
 require('./..//views/dinamico/index.js');
+require('./../js/cargue.js');

@@ -15,7 +15,7 @@ $( document ).ready(function() {
       });
       var objetivo = $(this).parent();
       var contador = 1;
-      while (objetivo !== undefined && objetivo.find("ul").length < 10) {
+      while (objetivo !== undefined && contador < 10 && objetivo.find("ul").length < 10) {
           var ruta  = objetivo.find("ul").eq(0).attr("id");
           if (ruta !== "") {
             $("#"+ruta).collapse('show');
