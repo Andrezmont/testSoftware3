@@ -58,10 +58,10 @@
           'OB':ob,
           'OC':oc,
           'OD':od,
-          'RA':parseInt(ra),
-          'RB':parseInt(rb),
-          'RC':parseInt(rc),
-          'RD':parseInt(rd),
+          'RA':parseInt(ra|0),
+          'RB':parseInt(rb|0),
+          'RC':parseInt(rc|0),
+          'RD':parseInt(rd|0),
           'text':encabezado
         });
       }
