@@ -526,7 +526,12 @@ $(document).ready(function() {
         });
     });
 });
-
+/**
+* @autor:godie007
+* @date: 2017/05/01 11:03
+* Funcion para generar una tabla en base al plugin datatable al hacer una
+* petición ajax al modulo dinamico que lo necesite
+**/
 function mostrarTabla() {
     $.ajax({
         url: "/admin/" + $("#modulo").attr("class") + "/listar/",
@@ -535,7 +540,6 @@ function mostrarTabla() {
             console.log(respuesta);
         },
         success: function(respuesta) {
-            //console.log(JSON.stringify(respuesta));
             mostrar(respuesta);
             $(".ingresar").trigger('focus');
         }
@@ -543,6 +547,12 @@ function mostrarTabla() {
 }
 
 window.registro = [];
+/**
+* @autor:godie007
+* @date: 2017/05/01 11:59
+* este metodo se encarga de generar en base a un json y a los titulos dinamicos del
+* formbuilder una tabla adapatable
+**/
 function mostrar(entrada) {
   registro = entrada;
     // se hace la adaptacion dinamica a la tabla
@@ -618,6 +628,7 @@ function mostrar(entrada) {
         responsive: true,
         altEditor: true,
         dom: 'Bfrtip',
+        stateSave: true,
         lengthMenu: [
             [ 10, 25, 50,100,500, -1 ],
             [ '10 Filas', '25 Filas', '50 Filas', '100 Filas', '500 Filas', 'Mostrar Todo' ]

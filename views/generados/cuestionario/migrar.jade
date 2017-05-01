@@ -1,4 +1,4 @@
-extends ../../../layouts/account
+extends ../../../layouts/admin
 
 block head
   title cuestionario
@@ -7,6 +7,7 @@ block head
 block feet
   script(src='/views/js/jquery.min.js')
   script(src='/js/bootstrap.min.js')
+  script(src='/js/cargue.js')
 
 block body
   div.page-header
@@ -16,11 +17,11 @@ block body
       form.form-horizontal
       br
       .control-group
-        form.control-group#uploadForm(enctype='multipart/form-data', action='/account/cuestionario/migrar', method='post')
+        form.control-group#uploadForm(enctype='multipart/form-data', action='/admin/cuestionario/migrar', method='post')
             input(type='file', name='userPhoto')
             br
             input.btn.btn-primary(type='submit', value='Importar', name='submit')
-            div#status
+      div#status
 
       script(type='text/javascript', src='/vendor/jquery/jquery.js')
       script(type='text/javascript', src='/views/js/jquery.form.js')
@@ -28,15 +29,15 @@ block body
         $(document).ready(function() {
         $('#uploadForm').submit(function() {
         var formData = new FormData($(this)[0]);
-        console.log($(this)[0]);
         formData.append("titulo", $("#titulo").val());
         formData.append("usuario", $("#usuario").attr("class"));
         $.ajax({
-        url: '/account/cuestionario/migrar',
+        url: '/admin/cuestionario/migrar',
         type: 'POST',
         data: formData,
         async: true,
         success: function (data) {
+        console.log(data);
         $("#status").html(data);
         $("#uploadForm").hide();
         },

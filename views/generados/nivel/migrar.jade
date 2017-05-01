@@ -1,4 +1,4 @@
-extends ../../../layouts/account
+extends ../../../layouts/admin
 
 block head
   title nivel
@@ -7,7 +7,7 @@ block head
 block feet
   script(src='/views/js/jquery.min.js')
   script(src='/js/bootstrap.min.js')
-
+  script(src='/js/cargue.js')
 block body
   div.page-header
     div.col-sm-11
@@ -16,11 +16,11 @@ block body
       form.form-horizontal
       br
       .control-group
-        form.control-group#uploadForm(enctype='multipart/form-data', action='/account/nivel/migrar', method='post')
+        form.control-group#uploadForm(enctype='multipart/form-data', action='/admin/nivel/migrar', method='post')
             input(type='file', name='userPhoto')
             br
             input.btn.btn-primary(type='submit', value='Importar', name='submit')
-            div#status
+        div#status  
 
       script(type='text/javascript', src='/vendor/jquery/jquery.js')
       script(type='text/javascript', src='/views/js/jquery.form.js')
@@ -32,7 +32,7 @@ block body
         formData.append("titulo", $("#titulo").val());
         formData.append("usuario", $("#usuario").attr("class"));
         $.ajax({
-        url: '/account/nivel/migrar',
+        url: '/admin/nivel/migrar',
         type: 'POST',
         data: formData,
         async: true,

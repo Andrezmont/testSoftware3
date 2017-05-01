@@ -276,6 +276,7 @@
         });
     };
     exports.subir = function(req, res) {
+        console.log("SI LLEGO");
         var form = new formidable.IncomingForm();
         form.parse(req, function(err, fields, files) {
 
@@ -338,7 +339,7 @@
                              **/
                             req.app.db.models.cuestionario.create(data);
                         }
-
+                        console.log("Se importo Exitosamente!");
                         res.send('<div class="alert alert-info">Se Importo Correctamente!</div>');
                     });
                 });
