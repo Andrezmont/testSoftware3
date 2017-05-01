@@ -16,6 +16,7 @@ block head
           table.table.table-bordered#tabla
             thead
               tr
+                th N°
                 th Area Actual
                 th Area Total
                 th Nivel
@@ -29,7 +30,7 @@ block head
               -    var m = today.getMinutes();
               -    var s = today.getSeconds();
               -    var ampm = h >= 12 ? 'PM' : 'AM';
-              -    h = h ? h : 12; // the hour '0' should be '12'
+              -    h = h ? h : 12;
               -    h = (h % 12 == 0) ? 12 : h % 12;
               -    m = m < 10 ? '0' + m : m;
               -    s = s < 10 ? '0' + s : s;
@@ -38,10 +39,11 @@ block head
               -var x;
               -for (x in historial) {
                 tr   
+                  td #{historial.length - x}
                   td #{historial[x].a_actual}
                   td #{historial[x].a_total}
                   td #{historial[x].nivel}
-                  td(align="center") #{parseInt(historial[x].porcentaje?historial[x].porcentaje:0)}%
+                  td #{historial[x].porcentaje?historial[x].porcentaje:0)%
                   td #{historial[x].usuario}
                   -var date = new Date();
                   -var fecha = date.getDate() + '/' + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + formatAMPM(historial[x].fecha_creacion);
@@ -65,7 +67,53 @@ block head
       script(src='/views/js/jquery.js')
       script(src='/js/bootstrap.min.js')
       script(src='/js/jquery.dataTables.min.js')
+      script(src='/js/dataTables.buttons.min.js')
+      script(src='/js/dataTables.responsive.min.js')
+      script(src='/js/dataTables.altEditor.free.js')
+      script(src='/js/buttons.print.min.js')
+      script(src='/js/pdfmake.min.js')
+      script(src='/js/buttons.bootstrap.min.js')
+      script(src='/js/buttons.html5.min.js')
+      script(src='/js/buttons.colVis.min.js')
+      script(src='/js/vfs_fonts.js')
       script(src='/js/cargue.js')
       script
-        $("#tabla").DataTable();
+        $("#tabla").DataTable({
+        "aaSorting": [[ 0, "desc" ]],
+        "destroy": true,
+        "select": true,
+        "responsive": true,
+        "altEditor": true,
+        "dom": 'Bfrtip',
+        "lengthMenu": [
+        [ 10, 25, 50,100,500, -1 ],
+        [ '10 Filas', '25 Filas', '50 Filas', '100 Filas', '500 Filas', 'Mostrar Todo' ]
+        ],
+        "buttons":[{
+        "text": 'Filas',
+        "extend": 'pageLength'
+        },{
+        "text": 'Mostrar Columnas',
+        "postfixButtons": ['colvisRestore'],
+        "extend": 'colvis'
+        },{
+        "extend": 'collection',
+        "text": 'Exportar',
+        "buttons": [{
+        "extend": 'pdfHtml5',
+        "exportOptions": {
+        "columns": ':not(:last-child)'
+        }},{
+        "extend": 'csvHtml5',
+        "exportOptions": {
+        "columns": ':not(:last-child)'
+        }}, {
+        "extend": 'copyHtml5',
+        "exportOptions": {
+        "columns": ':not(:last-child)'
+        }}, {
+        "extend": 'excelHtml5',
+        "exportOptions": {
+        "columns": ':not(:last-child)'}
+        }]}]});
     

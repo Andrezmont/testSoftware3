@@ -208,22 +208,41 @@ function generarGrafica() {
         },
         success: function(doc) {
             var contador = 0;
+            var minimo = 0;
+            var maximo = 0;
+            var op = 0;
             for (var i = 0; i < doc.ask.length; i++) {
                 for (var d = 0; d < $("input[id^='radio']:checked").length; d++) {
                     var id = parseInt($("input[id^='radio']:checked").eq(d).attr("class").split("radio")[1]);
                     if (id == i) {
                         var opcion = $("input[id^='radio']:checked").eq(d).val();
-                        if (opcion === doc.ask[i].respuesta) {
-                            contador++;
-                        }
+                        op += doc.ask[i]['R'+opcion];
+                        // se determina el valor minimo de peso
+                        var min = doc.ask[i].RA;
+                        min = doc.ask[i].RA <= min && doc.ask[i].RA!==0 ? doc.ask[i].RA:min;
+                        min = doc.ask[i].RB <= min && doc.ask[i].RB!==0 ? doc.ask[i].RB:min;
+                        min = doc.ask[i].RC <= min && doc.ask[i].RC!==0 ? doc.ask[i].RC:min;
+                        min = doc.ask[i].RD <= min && doc.ask[i].RD!==0 ? doc.ask[i].RD:min;
+                        minimo += min;
+                        // se determina el valor maximo de peso
+                        var max = doc.ask[i].RA;
+                        max = doc.ask[i].RA >= max && doc.ask[i].RA!==0 ? doc.ask[i].RA:max;
+                        max = doc.ask[i].RB >= max && doc.ask[i].RB!==0 ? doc.ask[i].RB:max;
+                        max = doc.ask[i].RC >= max && doc.ask[i].RC!==0 ? doc.ask[i].RC:max;
+                        max = doc.ask[i].RD >= max && doc.ask[i].RD!==0 ? doc.ask[i].RD:max;
+                        maximo += max;
+
                     }
                 }
             }
-            var porcent = (contador * 100) / doc.ask.length;
+
+            var porcent = Math.abs(100*((op-minimo)/(maximo-minimo)));
+            console.log("respueta "+op+" min "+minimo+" max " + maximo);
+            console.log("Porcentaje "+porcent);
             labels.push("Questionnaire");
             values.push(porcent);
 
-            var areaActual = engine.calculateArea(values);
+            var areaActual = engine.calculateArea(values).toFixed(2);
             $("#areaF").text("Area Actual: " + areaActual);
 
             $.ajax({
@@ -233,12 +252,12 @@ function generarGrafica() {
                     console.log(respuesta);
                 },
                 success: function(doc) {
-                    var p_total = engine.calculatePercentage(areaActual,values.length);
+                    var p_total = engine.calculatePercentage(areaActual,values.length).toFixed(2);
                     var nivel = engine.calculateLevel(doc, p_total);
 
                     $("#procentF").text("Procentaje Actual: " + p_total + "%");
                     $("#nivelA").text("La empresa esta en " + nivel);
-                    var areaTotal = engine.calculateAreaTotal(values.length);
+                    var areaTotal = engine.calculateAreaTotal(values.length).toFixed(2);
                     window.saveCaculus(areaTotal,areaActual,nivel,p_total);
                 }
             });

@@ -21,17 +21,51 @@
     req.app.db.models.cuestionario.find({'data.valor': req.body.area},{'data':1}).exec(function(err, ask) {
       if (err) console.log(err);
       var ars= [];
-      for (var i = 0; i < ask.length; i++) {
+      var respuesta,od,oc,ob,oa,ra,rb,rc,rd,encabezado;
+        for (var i = 0; i < ask.length; i++) {
+          for (var s = 0; s < ask[i].data.length; s++) {
+          if (ask[i].data[s].titulo === 'Encabezado') {
+            encabezado = ask[i].data[s].valor;
+          }
+          if (ask[i].data[s].titulo === 'Texto de la opción A') {
+            oa = ask[i].data[s].valor;
+          }
+          if (ask[i].data[s].titulo === 'Texto de la opción B') {
+            ob = ask[i].data[s].valor;
+          }
+          if (ask[i].data[s].titulo === 'Texto de la opción C') {
+            oc = ask[i].data[s].valor;
+          }
+          if (ask[i].data[s].titulo === 'Texto de la opción D') {
+            od = ask[i].data[s].valor;
+          }
+          if (ask[i].data[s].titulo === 'Peso A') {
+            ra = ask[i].data[s].valor;
+          }
+          if (ask[i].data[s].titulo === 'Peso B') {
+            rb = ask[i].data[s].valor;
+          }
+          if (ask[i].data[s].titulo === 'Peso C') {
+            rc = ask[i].data[s].valor;
+          }
+          if (ask[i].data[s].titulo === 'Peso D') {
+            rd = ask[i].data[s].valor;
+          }
+        }
         ars.push({
           'id':ask[i]._id,
-          'respuesta':ask[i].data[0].valor,
-          'OD':ask[i].data[2].valor,
-          'OC':ask[i].data[3].valor,
-          'OB':ask[i].data[4].valor,
-          'OA':ask[i].data[5].valor,
-          'text':ask[i].data[6].valor
+          'OA':oa,
+          'OB':ob,
+          'OC':oc,
+          'OD':od,
+          'RA':parseInt(ra),
+          'RB':parseInt(rb),
+          'RC':parseInt(rc),
+          'RD':parseInt(rd),
+          'text':encabezado
         });
       }
+
       res.send({'ask':ars});
     });
   };
@@ -62,9 +96,11 @@
     });
   };
   exports.historial = function(req, res) {
-    req.app.db.models.registro.find({}).exec(function(err, ask) {
-      if (err) console.log(err);
-      res.render('grafica/historial',{'historial':ask});
+    req.app.db.models.User.findById(req.user.id, {'username':1,'empresa':1}).exec(function(err, user) {
+      req.app.db.models.registro.find({'empresa':user.empresa}).sort({"fecha_creacion": -1}).exec(function(err, ask) {
+        if (err) console.log(err);
+        res.render('grafica/historial',{'historial':ask});
+      });
     });
   };
 
