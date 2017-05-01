@@ -1,9 +1,19 @@
-{"_id":{"$oid":"58f46b85367c95347d5c1db4"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.570Z"},"a_attr":{"href":"/admin/area/"},"text":"Area","parent":"#","id":"j1_2","__v":0}
-{"_id":{"$oid":"58f46b85367c95347d5c1db5"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.659Z"},"a_attr":{"href":"/admin/cuestionario/"},"text":"Cuestionario","parent":"#","id":"j1_1","__v":0}
-{"_id":{"$oid":"58f46b85367c95347d5c1db6"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.893Z"},"a_attr":{"href":"/admin/users/"},"text":"Lista de Usuarios","parent":"j1_6","id":"j1_7","__v":0}
-{"_id":{"$oid":"58f46b85702b6834821817d9"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.387Z"},"a_attr":{"href":"/admin/indicador/"},"text":"Indicador","parent":"#","id":"j1_4","__v":0}
-{"_id":{"$oid":"58f46b85702b6834821817da"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.606Z"},"a_attr":{"href":"/admin/nivel/"},"text":"Niveles","parent":"#","id":"1","__v":0}
-{"_id":{"$oid":"58f46b85702b6834821817db"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.696Z"},"a_attr":{"href":"/admin/empresa/"},"text":"Empresa","parent":"#","id":"j1_3","__v":0}
-{"_id":{"$oid":"58f46b85702b6834821817dc"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.746Z"},"a_attr":{"href":"#"},"text":"Administrar Usuarios","parent":"#","id":"j1_6","__v":0}
-{"_id":{"$oid":"58f46b85702b6834821817dd"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.795Z"},"a_attr":{"href":"/admin/signup/"},"text":"Registrar Usuario","parent":"j1_6","id":"j1_5","__v":0}
-{"_id":{"$oid":"58f46b85702b6834821817de"},"icon":true,"fecha_creacion":{"$date":"2017-04-17T07:15:17.935Z"},"a_attr":{"href":"/admin/administrators"},"text":"Administradores","parent":"j1_6","id":"j1_8","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e83"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.311Z"},"a_attr":{"href":"#"},"text":"Area","parent":"#","id":"j1_2","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e84"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.359Z"},"a_attr":{"href":"/admin/area/"},"text":"Ingresa","parent":"j1_2","id":"j1_9","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e85"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.397Z"},"a_attr":{"href":"/admin/area/migrar/"},"text":"Importar","parent":"j1_2","id":"j1_10","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e86"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.457Z"},"a_attr":{"href":"#"},"text":"Cuestionario","parent":"#","id":"j1_1","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e87"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.499Z"},"a_attr":{"href":"/admin/cuestionario/"},"text":"Ingresar","parent":"j1_1","id":"j1_11","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e88"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.550Z"},"a_attr":{"href":"/admin/cuestionario/migrar/"},"text":"Importar","parent":"j1_1","id":"j1_12","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e89"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.690Z"},"a_attr":{"href":"#"},"text":"Indicador","parent":"#","id":"j1_4","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e8a"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.849Z"},"a_attr":{"href":"/admin/indicador/"},"text":"Ingresar","parent":"j1_4","id":"j1_13","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e8b"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.905Z"},"a_attr":{"href":"/admin/indicador/migrar/"},"text":"Importar","parent":"j1_4","id":"j1_14","__v":0}
+{"_id":{"$oid":"59077f8785869e0dea207e8c"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:43.958Z"},"a_attr":{"href":"#"},"text":"Niveles","parent":"#","id":"1","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e8d"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.012Z"},"a_attr":{"href":"/admin/nivel/"},"text":"Ingresar","parent":"1","id":"j1_15","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e8e"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.049Z"},"a_attr":{"href":"/admin/nivel/migrar/"},"text":"Importar","parent":"1","id":"j1_16","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e8f"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.187Z"},"a_attr":{"href":"#"},"text":"Empresa","parent":"#","id":"j1_3","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e90"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.251Z"},"a_attr":{"href":"/admin/empresa/"},"text":"Ingresar","parent":"j1_3","id":"j1_17","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e91"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.300Z"},"a_attr":{"href":"/admin/empresa/migrar/"},"text":"Importar","parent":"j1_3","id":"j1_18","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e92"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.392Z"},"a_attr":{"href":"#"},"text":"Administrar Usuarios","parent":"#","id":"j1_6","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e93"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.420Z"},"a_attr":{"href":"/admin/users/"},"text":"Lista de Usuarios","parent":"j1_6","id":"j1_7","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e94"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.475Z"},"a_attr":{"href":"/admin/signup/"},"text":"Registrar Usuario","parent":"j1_6","id":"j1_5","__v":0}
+{"_id":{"$oid":"59077f8885869e0dea207e95"},"icon":true,"fecha_creacion":{"$date":"2017-05-01T18:33:44.598Z"},"a_attr":{"href":"/admin/administrators"},"text":"Administradores","parent":"j1_6","id":"j1_8","__v":0}
