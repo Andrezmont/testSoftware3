@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
       url: "/account/formulario/",
       type: 'POST',
       error: function(respuesta) {
-          
+          console.log(respuesta);
       },
       success: function(respuesta) {
 
@@ -48,6 +48,7 @@ jQuery(document).ready(function($) {
         })
 
         $('.form-builder-save').click(function() {
+            console.log("Has Guardado");
             toggleEdit();
             $(renderWrap).formRender({
                 dataType: 'json',
@@ -60,10 +61,10 @@ jQuery(document).ready(function($) {
                 url: "/account/clienteTodo/",
                 type: 'DELETE',
                 error: function(respuesta) {
-                    
+                    console.log(respuesta);
                 },
                 success: function(respuesta) {
-                    
+                    console.log(respuesta);
                 }
             });
 
@@ -79,10 +80,10 @@ jQuery(document).ready(function($) {
                     type: 'POST',
                     data: datos[i],
                     error: function(respuesta) {
-                        
+                        console.log(respuesta);
                     },
                     success: function(respuesta) {
-                        
+                        console.log(respuesta);
                     }
                 });
               }
@@ -148,6 +149,7 @@ function tomarValores() {
     }
     json += ']}';
     json += ']';
+    console.log(json);
     var sa = JSON.parse(json)[0];
     return sa;
 }

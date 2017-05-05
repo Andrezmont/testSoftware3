@@ -1591,7 +1591,7 @@ function formBuilderEventsFn() {
           return console.error(message);
         },
         success: function success(message) {
-          return
+          return console.log(message);
         },
         warning: function warning(message) {
           return console.warn(message);

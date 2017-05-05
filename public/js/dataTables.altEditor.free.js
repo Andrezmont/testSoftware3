@@ -152,7 +152,7 @@
         */
         _setup: function()
         {
-         //
+         // console.log('Setup');
 
          var that = this;
          var dt = this.s.dt;

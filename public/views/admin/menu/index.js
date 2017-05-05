@@ -67,6 +67,7 @@ function almacenar() {
           preventDuplicates: false,
           timeOut: "1000",
           onclick: function() {
+              console.log("Toco el Mensaje");
           }
       };
       //success error warning info

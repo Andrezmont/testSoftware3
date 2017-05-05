@@ -3009,9 +3009,9 @@ Editor.prototype.off = function ( name, fn )
  *
  *  @example
  *    // Log events on the console when they occur
- *    editor.on( 'open', function () {
- *    editor.on( 'close', function () {
- *    editor.on( 'submit', function () {
+ *    editor.on( 'open', function () { console.log( 'Form opened' ); } );
+ *    editor.on( 'close', function () { console.log( 'Form closed' ); } );
+ *    editor.on( 'submit', function () { console.log( 'Form submitted' ); } );
  */
 Editor.prototype.on = function ( name, fn )
 {
