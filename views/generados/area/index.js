@@ -16,7 +16,7 @@
         var item = req.body;
         req.app.db.models.area.update({
             '_id': item._id
-        }, item, function(err, doc) {
+        }, item, function(err) {
             if (err) {
                 res.send('Error');
             } else {
@@ -24,8 +24,8 @@
             }
         });
     };
-    exports.eliminar = function(req, res, next) {
-        req.app.db.models.area.findByIdAndRemove(req.body.id, function(err, account) {
+    exports.eliminar = function(req, res) {
+        req.app.db.models.area.findByIdAndRemove(req.body.id, function(err) {
             if (err) {
                 res.send('Error');
             } else {
@@ -35,7 +35,7 @@
     };
     exports.ingresar = function(req, res) {
         var item = req.body;
-        req.app.db.models.area.create(item, function(err, doc) {
+        req.app.db.models.area.create(item, function(err) {
             if (err) {
                 res.send('Error');
             } else {
