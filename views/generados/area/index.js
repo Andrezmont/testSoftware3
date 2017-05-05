@@ -1,5 +1,4 @@
 (function() {
-
     exports.init = function(req, res) {
         if (req.user === undefined) {
             res.redirect('/login/');
@@ -7,26 +6,12 @@
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
         }).exec(function(err, user) {
-            if (err) {
-            }
-
-
-            var ip;
-            if (req.headers['x-forwarded-for']) {
-                ip = req.headers['x-forwarded-for'].split(",")[0];
-            } else if (req.connection && req.connection.remoteAddress) {
-                ip = req.connection.remoteAddress;
-            } else {
-                ip = req.ip;
-            }
             res.render('generados/area/inicio', {
                 'usuario': user.username,
                 'modulo': 'area',
             });
-
         });
     };
-
     exports.actualizar = function(req, res) {
         var item = req.body;
         req.app.db.models.area.update({
@@ -40,7 +25,6 @@
         });
     };
     exports.eliminar = function(req, res, next) {
-
         req.app.db.models.area.findByIdAndRemove(req.body.id, function(err, account) {
             if (err) {
                 res.send('Error');
@@ -48,8 +32,6 @@
                 res.send('Ok');
             }
         });
-
-
     };
     exports.ingresar = function(req, res) {
         var item = req.body;
@@ -63,7 +45,6 @@
         });
     };
     exports.buscar = function(req, res) {
-
         req.app.db.models.area.find({
             'data.dane': req.body.dane
         }, {
@@ -71,7 +52,6 @@
             'data.direccion': 1,
             'data.nombre': 1
         }, function(err, doc) {
-
             if (err) {
             } else {
                 if (doc[0] !== undefined && doc[0] !== '') {
@@ -82,8 +62,6 @@
             }
         });
     };
-
-
     exports.ver = function(req, res) {
         req.app.db.models.area.findById(req.body.id, {
             'data': 1
@@ -94,7 +72,6 @@
             }
         });
     };
-
     exports.listar = function(req, res) {
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
@@ -107,13 +84,11 @@
             }).exec(function(err, doc) {
                 if (err) {
                 } else {
-
                     res.send(doc);
                 }
             });
         });
     };
-
     exports.init2 = function(req, res) {
         if (req.user === undefined) {
             res.redirect('/login/');
@@ -121,17 +96,17 @@
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
         }).exec(function(err, user) {
-            if (err) {
-            }
+          if (err) {
+              res.send('Error');
+          } else {
             res.render('generados/area/personalizar', {
                 'usuario': user.username,
                 'modulo': 'area'
             });
+          }
         });
     };
-
-
-    exports.eliminarTodo = function(req, res, next) {
+    exports.eliminarTodo = function(req, res) {
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
         }).exec(function(err, user) {
@@ -146,11 +121,11 @@
             });
         });
     };
-
     exports.ingresar2 = function(req, res) {
         var item = req.body;
         req.app.db.models.campo.create(item, function(err, doc) {
             if (err) {
+              res.send('Error');
             } else {
                 res.send({
                     'exitoso': 'si'
@@ -158,7 +133,6 @@
             }
         });
     };
-
     exports.formulario = function(req, res) {
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
@@ -170,15 +144,14 @@
             }).sort({
                 'indice': 1
             }).exec(function(err, doc) {
-
-                if (err) {
-                } else {
-                    res.send(doc);
-                }
+              if (err) {
+                  res.send('Error');
+              } else {
+                  res.send(doc);
+              }
             });
         });
     };
-
     exports.nombrar = function(req, res) {
         req.app.db.models.area.find({
             'usuario': req.body.usuario
@@ -199,13 +172,10 @@
             res.send('Se Renombro Exitosamente!');
         });
     };
-
-
     var Converter = require("csvtojson").Converter;
     var fs = require('fs');
     var multer = require('multer');
     var formidable = require('formidable');
-
     var storage = multer.diskStorage({
         destination: function(request, file, callback) {
             callback(null, './public/uploads');
@@ -214,7 +184,6 @@
             callback(null, file.originalname);
         }
     });
-
     exports.init3 = function(req, res) {
         if (req.user === undefined) {
             res.redirect('/login/');
@@ -230,9 +199,7 @@
     exports.subir = function(req, res) {
         var form = new formidable.IncomingForm();
         form.parse(req, function(err, fields, files) {
-
             var csvConverter = new Converter({});
-
             csvConverter.on("end_parsed", function(jsonObj) {
                 /**
                  * @autor:godie007
@@ -244,7 +211,6 @@
                     delete jsonObj[i]['N°'];
                     delete jsonObj[i]['Acción'];
                 }
-
                 req.app.db.models.User.findById(req.user.id, {
                     'username': 1
                 }).exec(function(err, user) {
@@ -276,7 +242,6 @@
                                     'valor': jsonObj[i][Object.keys(jsonObj[i])[s]],
                                     'id': id
                                 };
-
                             }
                             var data = {
                                 'data': datos,
@@ -290,7 +255,6 @@
                              **/
                             req.app.db.models.area.create(data);
                         }
-
                         res.send('<div class="alert alert-info">Se Importo Correctamente!</div>');
                     });
                 });
@@ -300,6 +264,5 @@
             // se elimina el archivo Cargado Temporalmente
             fs.unlinkSync(files.userPhoto.path);
         });
-
     };
 }());
