@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  var formBuilder;
     $.ajax({
         url: "/admin/formulario/" + $("#modulo").attr("class") + "/",
         type: 'POST',
@@ -31,7 +32,6 @@ $(document).ready(function() {
                 $.ajax({
                     url: "/admin/" + $("#modulo").attr("class") + "Todo/",
                     type: 'DELETE',
-                    error: function(respuesta) {},
                     success: function(respuesta) {
                         /**
                          * @autor:godie007
@@ -54,7 +54,7 @@ $(document).ready(function() {
                     }
                 });
             }
-            var formBuilder = $(buildWrap).formBuilder(fbOptions).data('formBuilder');
+            formBuilder = $(buildWrap).formBuilder(fbOptions).data('formBuilder');
             toggleEdit();
             $(renderWrap).formRender({
                 dataType: 'json',
@@ -64,9 +64,9 @@ $(document).ready(function() {
             $("input[id^='file-']:visible").each(function() {
                 var id = $(this).attr("id").split("-")[1];
                 $(".field-file-" + id).append('<div id="imagen' + id + '"></div>');
-                $("#file-" + id).change(function() {
-                    encodeImageFileAsURL(this, id);
-                });
+                //$("#file-" + id).change(function() {
+                //    encodeImageFileAsURL(this, id);
+                //});
             });
             $(".field-label").each(function() {
                 var nombre = $(this).text();
