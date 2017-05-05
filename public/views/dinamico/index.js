@@ -5,16 +5,13 @@
  * ser usado mas adelante para subir en el servidor
  **/
 function generarImagen(file, index) {
-
     var filesSelected = file.files;
     if (filesSelected.length > 0) {
         var fileToLoad = filesSelected[0];
-
         if (!fileToLoad.name.match(/\.(jpg|jpeg|png|gif|tiff|bmp|ico)$/)) {
             alert('El archivo que intenta subir no es una Imgen');
         } else {
             if (fileToLoad.size / 1024 <= 1024) {
-
                 var fileReader = new FileReader();
                 fileReader.onload = function(fileLoadedEvent) {
                     var newImage = document.createElement('img');
@@ -67,20 +64,14 @@ function formatAMPM(d) {
  **/
 window.ver = function(id){
   $("#id").val(id);
-
   $.ajax({
       url: "/admin/" + $("#modulo").attr("class") + "/ver/",
       type: 'POST',
       data: {
           'id': id
       },
-      error: function(respuesta) {
-          console.log(respuesta);
-      },
       success: function(respuesta) {
-          console.log("Se limpian Campos");
           limpiarCampos();
-
           for (var i = 0; i < respuesta.length; i++) {
               var valor = respuesta[i].valor;
               var id = respuesta[i].id;
@@ -146,24 +137,17 @@ window.eliminar =function (id) {
             preventDuplicates: false,
             timeOut: "1000",
             onclick: function() {
-                console.log("Toco el Mensaje");
             }
         };
-        //success error warning info
-        toastr.warning("El registro se ha Eliminado!.", "Importante!");
         $.ajax({
             url: "/admin/" + $("#modulo").attr("class") + "/",
             type: 'DELETE',
             data: {
                 'id': id
             },
-            error: function(respuesta) {
-                console.log(respuesta);
-            },
             success: function(respuesta) {
                 if (respuesta !== '') {
                     mostrarTabla();
-                    console.log(respuesta);
                 }
             }
         });
@@ -193,22 +177,17 @@ function generarCampos() {
             });
         }
     }, 1000);
-
     $.ajax({
         url: "/admin/formulario/" + $("#modulo").attr("class") + "/",
         type: 'POST',
         data: {
             'modulo': $("#modulo").attr("class")
         },
-        error: function(respuesta) {
-            console.log(respuesta);
-        },
         success: function(respuesta) {
             $("#panel").css('visibility', 'hidden');
             if (respuesta.length > 0) {
                 window.sessionStorage.setItem('formData', JSON.stringify(JSON.stringify(respuesta)));
             }
-
             var almacenados = JSON.stringify(JSON.stringify(respuesta));
             var buildWrap = document.querySelector('.build-wrap'),
                 renderWrap = document.querySelector('.render-wrap'),
@@ -217,23 +196,19 @@ function generarCampos() {
                 fbOptions = {
                     dataType: 'json'
                 };
-
             if (formData) {
                 fbOptions.formData = JSON.parse(formData);
             }
-
             var toggleEdit = function() {
                 document.body.classList.toggle('form-rendered', editing);
                 editing = !editing;
             };
-
             var formBuilder = $(buildWrap).formBuilder(fbOptions).data('formBuilder');
             toggleEdit();
             $(renderWrap).formRender({
                 dataType: 'json',
                 formData: formBuilder.formData
             });
-
             $("label").each(function(){
               var str = $(this).text();
               if (str.indexOf("_") !== -1) {
@@ -247,7 +222,6 @@ function generarCampos() {
             mostrarTabla();
         }
     });
-
 }
 /**
  * @autor:godie007
@@ -256,15 +230,12 @@ function generarCampos() {
  * y saca sus etiquetas para dar los titulos a la tabla del plugin datatable
  **/
 function generarTitulosDinamicos() {
-
     var json = '[';
     var inputs = $('input[type=datetime-local]:not([id*="preview"]),input[type=file]:not([id*="preview"]),input[id^="number-"]:not([id*="preview"]),input[id^="text-"]:not([id*="preview"]),textarea[id^="textarea-"]:not([id*="preview"]),select[id^="select-"]:not([id*="preview"]),input[id^="radio-group-"]:checked:not([id*="preview"]),input[id*="checkbox"]:not([id*="preview"]):not([id*="group"])');
     var inputs2 = $('div[class*="field-checkbox-group"]:not([class*="preview"])');
-
     for (var i = 0; i < inputs2.length; i++) {
         json += '{';
         var label = inputs2.eq(i).contents().eq(0).text().trim();
-
         json += '"label":"' + label.replace("?", "") + '",';
         json += '"valor":""';
         json += '},';
@@ -292,9 +263,7 @@ function generarTitulosDinamicos() {
     json += '{"label":"Fecha de Actualización",';
     json += '"valor":""}';
     json += ']';
-
     var arreglo = JSON.parse(json);
-
     var salida = [{
         "data": "_id",
         title: "<input type='checkbox' id='example-select-all'>"
@@ -302,9 +271,7 @@ function generarTitulosDinamicos() {
         "data": "indice",
         title: "N°"
     }];
-
     var cadena = '[';
-
     for (var k = 0; k < arreglo.length; k++) {
         cadena += '{"data": "' + arreglo[k].label + '","title": "' + arreglo[k].label + '"}';
         if (k !== arreglo.length - 1) {
@@ -313,11 +280,9 @@ function generarTitulosDinamicos() {
     }
     cadena += ']';
     var elementos = JSON.parse(cadena);
-
     for (var j = 0; j < elementos.length; j++) {
         salida.push(elementos[j]);
     }
-
     salida.push({
         "data": "_id",
         title: "Acción",
@@ -337,9 +302,7 @@ function generarTitulosDinamicos() {
  **/
 function tomarValores() {
     var json = '[';
-
     var inputs2 = $('div[class*="field-checkbox-group"]:not([class*="preview"])');
-
     for (var i = 0; i < inputs2.length; i++) {
         var items = $(inputs2[i]).find("label");
         var entra = $(inputs2[i]).find("input");
@@ -358,7 +321,6 @@ function tomarValores() {
                 }
             }
         }
-
         var label = inputs2.eq(i).contents().eq(0).text().trim();
         json += '"titulo":"' + label.replace("?", "") + '",';
         json += '"valor":"' + acomulado + '",';
@@ -366,19 +328,15 @@ function tomarValores() {
         json += '},';
     }
     var inputs = $('input[type=datetime-local]:not([id*="preview"]),input[type=file]:not([id*="preview"]),input[id^="number-"]:not([id*="preview"]),input[id^="text-"]:not([id*="preview"]),textarea[id^="textarea-"]:not([id*="preview"]),select[id^="select-"]:not([id*="preview"]),input[id^="radio-group-"]:checked:not([id*="preview"]),input[id*="checkbox"]:not([id*="preview"]):not([id*="group"])');
-
     for (var d = inputs.length - 1; d >= 0; d--) {
         if (inputs.eq(d).length > 0) {
-
             var titulo = inputs.eq(d).parent().find("label").eq(0).text().trim();
             var valor = inputs.eq(d).val() === '' ? ' ' : inputs.eq(d).val();
-
             if (inputs.eq(d).attr("id").indexOf("radio-group") !== -1) {
                 titulo = inputs.eq(d).parent().parent().find("label").eq(0).text().trim();
                 var num = inputs.eq(d).attr("id").split("-")[3];
                 valor = inputs.eq(d).parent().find("label").eq(num).text().trim();
             }
-
             if (inputs.eq(d).attr("id").indexOf("select-") !== -1) {
                 valor = inputs.eq(d).find("option:selected").val();
             }
@@ -396,7 +354,6 @@ function tomarValores() {
                 } else {
                     titulo = inputs.eq(d).parent().find("label").text().trim();
                 }
-
                 valor = $("#" + inputs.eq(d).attr("id")).is(':checked');
             }
             json += '{"id":"' + inputs.eq(d).attr("id") + '",';
@@ -411,10 +368,8 @@ function tomarValores() {
         }
     }
     if ($("#id").val() !== "") {
-
         var date = new Date();
         var fecha = date.getDate() + '/' + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + formatAMPM(date);
-
         json += '{"id":"usuAct",';
         json += '"titulo":"Usuario de Actualización",';
         json += '"valor":"' + $("#usuario").attr("class") + '"},';
@@ -426,13 +381,8 @@ function tomarValores() {
     var sa = JSON.parse(json);
     return sa;
 }
-
 $(document).ready(function() {
-
     generarCampos();
-
-
-
     $("#menuContactos").click();
     $("#menuCientes").click();
     $("#in_3").css({
@@ -440,18 +390,15 @@ $(document).ready(function() {
         'background-color': '#393a39',
         'color': 'white'
     });
-
     $("#actualizar").hide();
     $(".alert").hide();
     $("#guardar").show();
-
     $("#ingresar").click(function() {
         $("#guardar").show();
         $("#actualizar").hide();
         $("input,textarea").val("");
         $(".alert").hide();
     });
-
     $("#guardar").click(function() {
         toastr.options = {
             closeButton: true,
@@ -462,11 +409,8 @@ $(document).ready(function() {
             preventDuplicates: false,
             timeOut: "1000",
             onclick: function() {
-                console.log("Toco el Mensaje");
             }
         };
-        //success error warning info
-        toastr.success("Se ha Guardado el Producto.", "Felicidades!");
         $.ajax({
             url: "/admin/" + $("#modulo").attr("class") + "/",
             type: 'POST',
@@ -476,21 +420,16 @@ $(document).ready(function() {
                 'modulo': $("#modulo").attr("class"),
                 'empresa': $("#empresa").attr("class")
             },
-            error: function(respuesta) {
-                console.log(respuesta);
-            },
             success: function(respuesta) {
                 if (respuesta !== '') {
                     mostrarTabla();
                     $('#myModal').modal('hide');
-
                     $('#myModal').hide();
                     $('.modal-backdrop').hide();
                 }
             }
         });
     });
-
     $("#actualizar").click(function() {
         $(".alert").hide();
         toastr.options = {
@@ -502,20 +441,14 @@ $(document).ready(function() {
             preventDuplicates: false,
             timeOut: "1000",
             onclick: function() {
-                console.log("Toco el Mensaje");
             }
         };
-        //success error warning info
-        toastr.info("Actualizado Correctamente.", "Felicidades!");
         $.ajax({
             url: "/admin/" + $("#modulo").attr("class") + "/",
             type: 'PUT',
             data: {
                 '_id': $("#id").val(),
                 'data': tomarValores()
-            },
-            error: function(respuesta) {
-                console.log(respuesta);
             },
             success: function(respuesta) {
                 if (respuesta !== '') {
@@ -536,16 +469,12 @@ function mostrarTabla() {
     $.ajax({
         url: "/admin/" + $("#modulo").attr("class") + "/listar/",
         type: 'GET',
-        error: function(respuesta) {
-            console.log(respuesta);
-        },
         success: function(respuesta) {
             mostrar(respuesta);
             $(".ingresar").trigger('focus');
         }
     });
 }
-
 window.registro = [];
 /**
 * @autor:godie007
@@ -559,12 +488,10 @@ function mostrar(entrada) {
     var temp = [];
     var inputs = $('input[type=datetime-local]:not([id*="preview"]),input[type=file]:not([id*="preview"]),input[id^="number-"]:not([id*="preview"]),input[id^="text-"]:not([id*="preview"]),textarea[id^="textarea-"]:not([id*="preview"]),select[id^="select-"]:not([id*="preview"]),input[id^="radio-group-"]:checked:not([id*="preview"]),input[id^="checkbox-"]:not([id*="preview"]),div[class*="radio-group"]:not([class*="preview"])');
     // se expande dinamicamente los campos que no existen ahun en base de datos
-
     for (var i = 0; i < entrada.length; i++) {
         temp.push({});
         temp[i].indice = i;
         temp[i]._id = entrada[i]._id;
-
         for (var s = 0; s < inputs.length; s++) {
             var label = inputs.eq(inputs.length - 1 - s).parent().find("label").eq(0).text().trim();
             if (inputs.eq(inputs.length - 1 - s).parent().find("label").length > 1) {
@@ -579,7 +506,6 @@ function mostrar(entrada) {
             temp[i]["Fecha de Creación"] = '';
             temp[i]["Usuario de Creación"] = '';
             temp[i]["Usuario de Actualización"] = '';
-
         }
         for (var f = 0; f < inputs.length; f++) {
             if (entrada[i].data[f] !== undefined) {
@@ -594,7 +520,6 @@ function mostrar(entrada) {
         var fecha = date.getDate() + '/' + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + formatAMPM(date);
         temp[i]["Fecha de Creación"] = fecha;
         temp[i]["Usuario de Creación"] = entrada[i].usuario;
-
         if (entrada[i].data[inputs.length] !== undefined) {
             for (var d = 0; d < entrada[i].data.length; d++) {
                 if (entrada[i].data[d].titulo === "Fecha de Actualización") {
@@ -604,7 +529,6 @@ function mostrar(entrada) {
                     temp[i]["Usuario de Actualización"] = entrada[i].data[d].valor;
                 }
             }
-
         }
     }
     $("input[id^=date-]").addClass("form-control").attr('type', 'datetime-local');
@@ -674,11 +598,8 @@ function mostrar(entrada) {
                             preventDuplicates: false,
                             timeOut: "1000",
                             onclick: function() {
-                                console.log("Toco el Mensaje");
                             }
                         };
-                        //success error warning info
-                        toastr.warning("Los inventarios se han Eliminado!.", "Importante!");
                         $("input[type='checkbox']").each(function() {
                             if ($(this).is(":checked")) {
                                 $.ajax({
@@ -687,11 +608,7 @@ function mostrar(entrada) {
                                     data: {
                                         'id': $(this).attr("class")
                                     },
-                                    error: function(respuesta) {
-                                        console.log("Error " + respuesta);
-                                    },
                                     success: function(respuesta) {
-                                      console.log(respuesta);
                                     }
                                 });
                             }
@@ -710,7 +627,6 @@ function mostrar(entrada) {
                     exportOptions: {
                         columns: ':not(:last-child)'
                     }
-
                 }, {
                     extend: 'csvHtml5',
                     exportOptions: {
@@ -734,7 +650,6 @@ function mostrar(entrada) {
             }
         ]
     });
-
     $("input[type=checkbox]:visible").click(function() {
         $(".eliminar").removeAttr("disabled");
         if ($("input[type=checkbox]:checked").length === 0) {

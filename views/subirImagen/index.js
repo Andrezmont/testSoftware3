@@ -3,7 +3,6 @@
 exports.init = function(req, res) {
     req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
         if (err) {
-            console.log(err);
         }
         req.app.db.models.impreso.find({'usuario':user.username}).exec(function(err, doc) {
           if (doc.length > 0) {
@@ -31,7 +30,6 @@ var storage = multer.diskStorage({
     callback(null, './public/uploads');
   },
   filename: function (request, file, callback) {
-    console.log(file);
     callback(null, file.originalname)
   }
 });
@@ -49,7 +47,6 @@ exports.subir  = function(req, res) {
         if(err) {
           return res.end("Error Subiendo Imagen.");
         }else{
-          console.log("Se actualiza Correctamente!"+JSON.stringify(doc));
         }
       });
       

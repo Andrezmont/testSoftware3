@@ -344,7 +344,6 @@ exports.update = function(req, res, next){
       if (err) {
         return workflow.emit('exception', err);
       }
-      console.log(account);
       workflow.outcome.account = account;
       return workflow.emit('response');
     });

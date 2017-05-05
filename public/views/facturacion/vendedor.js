@@ -136,14 +136,12 @@ $( document ).ready(function() {
                   'usuario': $("#usuario").attr("class")
               },
               error: function(respuesta) {
-                  console.log(respuesta);
+                  
               },
               success: function(respuesta) {
                   if (respuesta != '') {
-                    console.log("Si hubo Respuesta!");
                     var inputs = $('input[id^=number]:visible');
                     for (var i =  0; i < inputs.length; i++) {
-                        console.log(inputs.eq(i).parent().find("label").text().trim());
                         if (inputs.eq(i).parent().find("label").text().trim() === "Cedula") {
                           window.opener.document.getElementById('cedulaV').value = inputs.eq(i).val();
                           window.opener.notificarIngresoDevendedor();
@@ -190,10 +188,10 @@ $( document ).ready(function() {
               "modulo":$("#modulo").attr("class")
             },
             error: function(respuesta) {
-                console.log(respuesta);
+                
             },
             success: function(respuesta) {
-              console.log(respuesta);
+              
                 if (respuesta.length > 0) {
                     window.sessionStorage.setItem('formData', JSON.stringify(JSON.stringify(respuesta)));
                 }

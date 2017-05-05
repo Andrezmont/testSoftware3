@@ -14,10 +14,10 @@
               'usuario': $("#usuario").attr("class")
           },
           error: function(respuesta) {
-              console.log(respuesta);
+              
           },
           success: function(respuesta) {
-              console.log(respuesta);
+              
               generarCampos();
           }
       });
@@ -32,7 +32,7 @@
         url: "/account/facturacion/dinamica/listar",
         type: 'POST',
         error: function(respuesta) {
-            console.log(respuesta);
+            
         },
         success: function(respuesta) {
             var html = '<div style="">'
@@ -77,11 +77,11 @@
                       'id': $(this).attr("id")
                   },
                   error: function(respuesta) {
-                      console.log(respuesta);
+                      
                   },
                   success: function(respuesta) {
                       if (respuesta != '') {
-                          console.log(respuesta);
+                          
                           generarCampos();
                       }
                   }
@@ -167,8 +167,6 @@
           return '<div class="btn-group"><button name="ver" type="button" id="' + data + '" data-toggle="modal" data-target="#myModal" class="btn btn-default fa fa-edit " ></button><button type="button" name="eliminar" id="' + data + '"class="btn btn-danger fa fa-trash-o" ></button></div>';
       }
   });
-
-  console.log(JSON.stringify(salida));
   return salida;
   }
 </script>

@@ -1,6 +1,5 @@
 var assert = require('assert');
 var engine = require('../../../public/views/grafica/engine');
-
 describe('Engine', function() {
   /**
   * @autor:godie007
@@ -12,12 +11,10 @@ describe('Engine', function() {
     it('should return 100% when everything is full', function() {
       assert.equal(100, engine.calculatePercentage(30949.293313144917,21));
     });
-
     it('should return 0% when area is 0', function() {
       assert.equal(0, engine.calculatePercentage(0,21));
     });
   });
-
   /**
   * @autor:godie007
   * @date: 2017/04/17 14:05
@@ -47,7 +44,6 @@ describe('Engine', function() {
         { min: 81, max: 100, nivel: 5},
       ]
     };
-
     it('should return level 1', function() {
       assert.equal(1, engine.calculateLevel(doc, 5));
     });

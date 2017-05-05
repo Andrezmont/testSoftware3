@@ -3,10 +3,10 @@ $(document).ready(function() {
         url: "/admin/formulario/"+$("#modulo").attr("class")+"/",
         type: 'POST',
         error: function(respuesta) {
-            console.log(respuesta);
+            
         },
         success: function(respuesta) {
-            console.log(respuesta);
+            
             if (respuesta.length > 0) {
                 window.sessionStorage.setItem('formData', JSON.stringify(JSON.stringify(respuesta)));
             }
@@ -37,7 +37,7 @@ $(document).ready(function() {
                   url: "/admin/"+$("#modulo").attr("class")+"Todo/",
                   type: 'DELETE',
                   error: function(respuesta) {
-                      console.log(respuesta);
+                      
                   },
                   success: function(respuesta) {
 

@@ -43,7 +43,7 @@ function ver(id) {
             'id': id
         },
         error: function(respuesta) {
-            console.log(respuesta);
+            
         },
         success: function(respuesta) {
           limpiarCampos();
@@ -110,7 +110,6 @@ function eliminar(id) {
             preventDuplicates: false,
             timeOut: "1000",
             onclick: function() {
-                console.log("Toco el Mensaje");
             }
         };
         //success error warning info
@@ -122,7 +121,7 @@ function eliminar(id) {
                 'id': id
             },
             error: function(respuesta) {
-                console.log(respuesta);
+                
             },
             success: function(respuesta) {
                 if (respuesta != '') {
@@ -151,10 +150,10 @@ function generarCampos() {
           'modulo':$("#modulo").attr("class")
         },
         error: function(respuesta) {
-            console.log(respuesta);
+            
         },
         success: function(respuesta) {
-          console.log(respuesta);
+          
             if (respuesta.length > 0) {
                 window.sessionStorage.setItem('formData', JSON.stringify(JSON.stringify(respuesta)));
             }
@@ -351,9 +350,6 @@ $(document).ready(function() {
         'background-color': '#393a39',
         'color': 'white'
     });
-
-
-    console.log("ready!");
     $("#actualizar").hide();
     $(".alert").hide();
     $("#guardar").show();
@@ -376,7 +372,7 @@ $(document).ready(function() {
                 'modulo': $("#modulo").attr("class")
             },
             error: function(respuesta) {
-                console.log(respuesta);
+                
             },
             success: function(respuesta) {
                 if (respuesta != '') {
@@ -389,7 +385,6 @@ $(document).ready(function() {
                         preventDuplicates: false,
                         timeOut: "1000",
                         onclick: function() {
-                            console.log("Toco el Mensaje");
                         }
                     };
                     //success error warning info
@@ -415,7 +410,6 @@ $(document).ready(function() {
             preventDuplicates: false,
             timeOut: "1000",
             onclick: function() {
-                console.log("Toco el Mensaje");
             }
         };
         //success error warning info
@@ -428,7 +422,7 @@ $(document).ready(function() {
                 'data': tomarValores()
             },
             error: function(respuesta) {
-                console.log(respuesta);
+                
             },
             success: function(respuesta) {
                 if (respuesta != '') {
@@ -447,10 +441,10 @@ function mostrarTabla() {
         url: "/account/proveedor/listar/",
         type: 'GET',
         error: function(respuesta) {
-            console.log(respuesta);
+            
         },
         success: function(respuesta) {
-            //console.log(JSON.stringify(respuesta));
+            //
             mostrar(respuesta);
         }
     });
@@ -530,7 +524,6 @@ function mostrar(entrada) {
                 preventDuplicates: false,
                 timeOut: "1000",
                 onclick: function() {
-                    console.log("Toco el Mensaje");
                 }
             };
             //success error warning info
@@ -544,7 +537,6 @@ function mostrar(entrada) {
                             'id': $(this).attr("class")
                         },
                         error: function(respuesta) {
-                            console.log("Error " + respuesta);
                         },
                         success: function(respuesta) {
                             mostrarTabla();

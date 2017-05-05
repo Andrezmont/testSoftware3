@@ -102,14 +102,7 @@
     app.post('/admin/accounts/:id/status/', require('./views/admin/accounts/index').newStatus);
     app.delete('/admin/accounts/:id/', require('./views/admin/accounts/index').delete);
 
-    //generar PDF de Facturas
-    app.get('/facturar/:id', require('./views/facturacion/index').imprimir);
-    app.get('/imprimir/:id', function(req, res){
-      var conversion = require("phantom-html-to-pdf")();
-      conversion({url: req.protocol + '://'+req.get('host')+"/facturar/"+req.params.id }, function(err, pdf) {
-        pdf.stream.pipe(res);
-      });
-    });
+
     //admin > statuses
     app.get('/admin/statuses/', require('./views/admin/statuses/index').find);
     app.post('/admin/statuses/', require('./views/admin/statuses/index').create);
@@ -228,23 +221,6 @@
     app.post('/account/grafica/nivel/', require('./views/grafica/index').niveles);
     app.post('/account/grafica/registro/', require('./views/grafica/index').registro);
     app.get('/account/grafica/registro/', require('./views/grafica/index').historial);
-
-
-
-
-    // account >Facturacion
-    app.get('/account/facturacion/', require('./views/facturacion/index').init);
-    app.put('/account/facturacion/', require('./views/facturacion/index').actualizar);
-    app.post('/account/facturacion/', require('./views/facturacion/index').ingresar);
-    app.delete('/account/facturacion/', require('./views/facturacion/index').eliminar);
-    app.post('/account/facturacion/ver', require('./views/facturacion/index').ver);
-    app.get('/account/facturacion/listar', require('./views/facturacion/index').listar);
-    app.post('/account/facturacion/producto', require('./views/facturacion/index').buscarCantidad);
-    app.get('/account/facturacion/ventana/:indice', require('./views/facturacion/index').buscarProducto);
-
-    //Upload Files
-    app.get('/account/facturacion/dinamica/', require('./views/subirImagen/index').init);
-    app.post('/account/facturacion/dinamica/', require('./views/subirImagen/index').subir);
 
     app.get('/prueba/', require('./views/prueba/index').inicio);
     app.get('/build/', require('./views/prueba/index').inicio2);

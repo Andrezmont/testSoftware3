@@ -4,7 +4,6 @@
     exports.init = function(req, res) {
         req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             res.render('generar_modulo/index');
         });
@@ -13,7 +12,6 @@
     exports.generar = function(req, res) {
         req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
 
             function replaceAll(str, find, replace) {
@@ -48,41 +46,41 @@
                 //se reemplza la palabra template por la nueva en el archivo index.js
                 fs.readFile(raiz + '/index.js', 'utf8', function(err, data) {
                     if (err) {
-                        return console.log(err);
+                        return
                     }
                     var result = replaceAll(data, 'template', req.body.nombre);
                     fs.writeFile(raiz + '/index.js', result, 'utf8', function(err) {
-                        if (err) return console.log(err);
+                        if (err) return
                     });
                 });
                 //se reemplza la palabra template por la nueva en el archivo inicio.jade
                 fs.readFile(raiz + '/inicio.jade', 'utf8', function(err, data) {
                     if (err) {
-                        return console.log(err);
+                        return
                     }
                     var result = replaceAll(data, 'template', req.body.nombre);
                     fs.writeFile(raiz + '/inicio.jade', result, 'utf8', function(err) {
-                        if (err) return console.log(err);
+                        if (err) return
                     });
                 });
                 //se reemplza la palabra template por la nueva en el archivo migrar.jade
                 fs.readFile(raiz + '/migrar.jade', 'utf8', function(err, data) {
                     if (err) {
-                        return console.log(err);
+                        return
                     }
                     var result = replaceAll(data, 'template', req.body.nombre);
                     fs.writeFile(raiz + '/migrar.jade', result, 'utf8', function(err) {
-                        if (err) return console.log(err);
+                        if (err) return
                     });
                 });
                 //se reemplza la palabra template por la nueva en el archivo personalizar.jade
                 fs.readFile(raiz + '/personalizar.jade', 'utf8', function(err, data) {
                     if (err) {
-                        return console.log(err);
+                        return
                     }
                     var result = replaceAll(data, 'template', req.body.nombre);
                     fs.writeFile(raiz + '/personalizar.jade', result, 'utf8', function(err) {
-                        if (err) return console.log(err);
+                        if (err) return
                     });
                 });
 
@@ -95,11 +93,11 @@
                 //se reemplza la palabra template por la nueva en el archivo personalizar.jade
                 fs.readFile('./schema/' + req.body.nombre + '.js', 'utf8', function(err, data) {
                     if (err) {
-                        return console.log(err);
+                        return
                     }
                     var result = replaceAll(data, 'template', req.body.nombre);
                     fs.writeFile('./schema/' + req.body.nombre + '.js', result, 'utf8', function(err) {
-                        if (err) return console.log(err);
+                        if (err) return
                     });
 
                 });
@@ -142,18 +140,16 @@
     exports.eliminar = function(req, res) {
         req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             var fs = require('fs-extra');
             // si el modulo ya existe
             var raiz = './views/generados/' + req.body.nombre;
 
             if (fs.existsSync(raiz)) {
-                console.log("Se elimina " + raiz);
                 fs.removeSync('./schema/' + req.body.nombre + '.js');
                 fs.readFile('./models.js', 'utf8', function(err, data) {
                     if (err) {
-                        return console.log(err);
+                        return
                     }
                     var salida = "";
                     for (var i = 0; i < data.split("\n").length; i++) {
@@ -164,7 +160,6 @@
                     if (salida !== "") {
                         fs.writeFile('./models.js', salida, function(err) {
                             if (err) {
-                                console.log(err);
                             }
                         });
                     }
@@ -172,7 +167,6 @@
 
                 fs.readFile('./routes.js', 'utf8', function(err, data) {
                     if (err) {
-                        console.log(err);
                     }
                     var salida = "";
                     for (var i = 0; i < data.split("\n").length; i++) {
@@ -183,7 +177,6 @@
                     if (salida !== "") {
                         fs.writeFile('./routes.js', salida, function(err) {
                           if (err) {
-                              console.log(err);
                           }
                         });
                     }

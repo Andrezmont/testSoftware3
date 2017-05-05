@@ -151,7 +151,6 @@
           workflow.emit('logUserIn');
         },
         error: function(err) {
-          console.log('Error Sending Welcome Email: '+ err);
           workflow.emit('logUserIn');
         }
       });
@@ -457,7 +456,6 @@
           workflow.emit('logUserIn');
         },
         error: function(err) {
-          console.log('Error Sending Welcome Email: '+ err);
           workflow.emit('logUserIn');
         }
       });

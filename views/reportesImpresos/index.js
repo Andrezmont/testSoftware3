@@ -7,7 +7,6 @@ exports.init = function(req, res) {
   }
   req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
       if (err) {
-          console.log(err);
       }
       res.render('reportesImpresos/index',{'usuario':user.username});
   });

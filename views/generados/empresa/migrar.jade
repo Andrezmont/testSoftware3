@@ -28,7 +28,6 @@ block body
         $(document).ready(function() {
         $('#uploadForm').submit(function() {
         var formData = new FormData($(this)[0]);
-        console.log($(this)[0]);
         formData.append("titulo", $("#titulo").val());
         formData.append("usuario", $("#usuario").attr("class"));
         $.ajax({

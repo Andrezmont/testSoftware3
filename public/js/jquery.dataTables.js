@@ -1632,7 +1632,7 @@
     function L(a, b, c, d) {
         c = "DataTables warning: " + (a ? "table id=" + a.sTableId + " - " : "") + c;
         d && (c += ". For more information about this error, please see http://datatables.net/tn/" + d);
-        if (b) D.console && console.log && console.log(c);
+        if (b) D.console &&
         else if (b = m.ext, b = b.sErrMode || b.errMode, a && u(a, null, "error", [a, d, c]), "alert" == b) alert(c);
         else {
             if ("throw" == b) throw Error(c);

@@ -8,7 +8,6 @@
             'username': 1
         }).exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
 
 
@@ -20,7 +19,6 @@
             } else {
                 ip = req.ip;
             }
-            console.log("cliente->" + ip);
             res.render('generados/cuestionario/inicio', {
                 'usuario': user.username,
                 'modulo': 'cuestionario',
@@ -35,7 +33,6 @@
             '_id': item._id
         }, item, function(err, doc) {
             if (err) {
-                console.log(err);
                 res.send('Error');
             } else {
                 res.send('Ok');
@@ -43,7 +40,6 @@
         });
     };
     exports.eliminar = function(req, res, next) {
-        console.log("delete " + JSON.stringify(req.body));
 
         req.app.db.models.cuestionario.findByIdAndRemove(req.body.id, function(err, account) {
             if (err) {
@@ -60,7 +56,6 @@
         //item.data.campos[0].valor = parseInt(item[0].data.campos[0].valor);
         req.app.db.models.cuestionario.create(item, function(err, doc) {
             if (err) {
-                console.log(err);
                 res.send('Error');
             } else {
                 res.send('Ok');
@@ -78,7 +73,6 @@
         }, function(err, doc) {
 
             if (err) {
-                console.log(err);
             } else {
                 if (doc[0] !== undefined && doc[0] !== '') {
                     res.send(doc[0].data);
@@ -95,7 +89,6 @@
             'data': 1
         }, function(err, doc) {
             if (err) {
-                console.log(err);
             } else {
                 res.send(doc.data);
             }
@@ -107,14 +100,12 @@
             'username': 1
         }).exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             req.app.db.models.cuestionario.find({
             }).sort({
                 "fecha_creacion": -1
             }).exec(function(err, indicador) {
                 if (err) {
-                    console.log(err);
                 } else {
                   req.app.db.models.area.find({}).exec(function(err, area) {
                     var doc = indicador;
@@ -145,7 +136,6 @@
             'username': 1
         }).exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             res.render('generados/cuestionario/personalizar', {
                 'usuario': user.username,
@@ -163,10 +153,8 @@
                 'modulo': 'cuestionario'
             }, function(err, account) {
                 if (err) {
-                    console.log(err);
                     res.send('Error');
                 } else {
-                    console.log('Eliminado');
                     res.send('Ok');
                 }
             });
@@ -175,10 +163,8 @@
 
     exports.ingresar2 = function(req, res) {
         var item = req.body;
-        console.log(item);
         req.app.db.models.campo.create(item, function(err, doc) {
             if (err) {
-                console.log("--->" + err);
             } else {
                 res.send({
                     'exitoso': 'si'
@@ -192,7 +178,6 @@
             'username': 1
         }).exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             req.app.db.models.campo.find({
                 'modulo': 'cuestionario'
@@ -200,16 +185,14 @@
                 'indice': 1
             }).exec(function(err, doc) {
                 if (err) {
-                    console.log("----->" + err);
                 } else {
                   /**
                   * @autor:godie007
                   * @date: 2017/04/14 22:56
                   * Se programa la lista de valores para Areas para el plugin FormBuilder
                   **/
+                  temp = [];
                   req.app.db.models.area.find({},{'data':1},function(err,area) {
-                    console.log(area);
-                    var temp = [];
                     for (var i = 0; i < doc.length; i++) {
                       if (doc[i].label ==="Area") {
                         for (var h = 0; h < area.length; h++) {
@@ -218,6 +201,28 @@
                       }
                       temp.push(doc[i]);
                     }
+                  });
+
+                  /**
+                  * @autor:godie007
+                  * @date: 2017/04/14 22:56
+                  * Se programa la lista de valores para Areas para el plugin FormBuilder
+                  **/
+                  req.app.db.models.cuestionario.find({},{'data':1}).exec(function(err,area) {
+                    for (var i = 0; i < doc.length; i++) {
+                      if (doc[i].label ==="Relación") {
+                        doc[i].values=[];
+                        for (var h = 0; h < area.length; h++) {
+                          for (var s = 0; s < area[h].data.length; s++) {
+                            if (area[h].data[s].titulo === 'Indice') {
+                              doc[i].values[h] = {'value':area[h]._id,'label':area[h].data[s].valor};
+                            }
+                          }
+                        }
+                      }
+                      temp[i]=doc[i];
+                    }
+
                     res.send(temp);
                   });
                 }
@@ -257,7 +262,6 @@
             callback(null, './public/uploads');
         },
         filename: function(request, file, callback) {
-            console.log(file);
             callback(null, file.originalname);
         }
     });
@@ -268,7 +272,6 @@
         }
         req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             res.render('generados/cuestionario/migrar', {
                 'usuario': user.username
@@ -276,7 +279,6 @@
         });
     };
     exports.subir = function(req, res) {
-        console.log("SI LLEGO");
         var form = new formidable.IncomingForm();
         form.parse(req, function(err, fields, files) {
 
@@ -339,7 +341,6 @@
                              **/
                             req.app.db.models.cuestionario.create(data);
                         }
-                        console.log("Se importo Exitosamente!");
                         res.send('<div class="alert alert-info">Se Importo Correctamente!</div>');
                     });
                 });

@@ -8,7 +8,6 @@
             'username': 1
         }).exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
 
 
@@ -20,7 +19,6 @@
             } else {
                 ip = req.ip;
             }
-            console.log("cliente->" + ip);
             res.render('generados/nivel/inicio', {
                 'usuario': user.username,
                 'modulo': 'nivel',
@@ -35,7 +33,6 @@
             '_id': item._id
         }, item, function(err, doc) {
             if (err) {
-                console.log(err);
                 res.send('Error');
             } else {
                 res.send('Ok');
@@ -43,7 +40,6 @@
         });
     };
     exports.eliminar = function(req, res, next) {
-        console.log("delete " + JSON.stringify(req.body));
 
         req.app.db.models.nivel.findByIdAndRemove(req.body.id, function(err, account) {
             if (err) {
@@ -60,7 +56,6 @@
         //item.data.campos[0].valor = parseInt(item[0].data.campos[0].valor);
         req.app.db.models.nivel.create(item, function(err, doc) {
             if (err) {
-                console.log(err);
                 res.send('Error');
             } else {
                 res.send('Ok');
@@ -78,7 +73,6 @@
         }, function(err, doc) {
 
             if (err) {
-                console.log(err);
             } else {
                 if (doc[0] !== undefined && doc[0] !== '') {
                     res.send(doc[0].data);
@@ -95,7 +89,6 @@
             'data': 1
         }, function(err, doc) {
             if (err) {
-                console.log(err);
             } else {
                 res.send(doc.data);
             }
@@ -107,14 +100,12 @@
             'username': 1
         }).exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             req.app.db.models.nivel.find({
             }).sort({
                 "fecha_creacion": -1
             }).exec(function(err, indicador) {
                 if (err) {
-                    console.log(err);
                 } else {
 
                   req.app.db.models.area.find({}).exec(function(err, area) {
@@ -147,7 +138,6 @@
             'username': 1
         }).exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             res.render('generados/nivel/personalizar', {
                 'usuario': user.username,
@@ -165,10 +155,8 @@
                 'modulo': 'nivel'
             }, function(err, account) {
                 if (err) {
-                    console.log(err);
                     res.send('Error');
                 } else {
-                    console.log('Eliminado');
                     res.send('Ok');
                 }
             });
@@ -177,10 +165,8 @@
 
     exports.ingresar2 = function(req, res) {
         var item = req.body;
-        console.log(item);
         req.app.db.models.campo.create(item, function(err, doc) {
             if (err) {
-                console.log("--->" + err);
             } else {
                 res.send({
                     'exitoso': 'si'
@@ -193,8 +179,7 @@
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
         }).exec(function(err, user) {
-            if (err) {
-                console.log(err); 
+            if (err) { 
             }
             req.app.db.models.campo.find({
                 'modulo': 'nivel'
@@ -202,7 +187,6 @@
                 'indice': 1
             }).exec(function(err, doc) {
                 if (err) {
-                    console.log("----->" + err);
                 } else {
                   /**
                   * @autor:godie007
@@ -210,7 +194,6 @@
                   * Se programa la lista de valores para Areas para el plugin FormBuilder
                   **/
                   req.app.db.models.area.find({},{'data':1},function(err,area) {
-                    console.log(area);
                     var temp = [];
                     for (var i = 0; i < doc.length; i++) {
                       if (doc[i].label ==="Area") {
@@ -259,7 +242,6 @@
             callback(null, './public/uploads');
         },
         filename: function(request, file, callback) {
-            console.log(file);
             callback(null, file.originalname);
         }
     });
@@ -270,7 +252,6 @@
         }
         req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
             if (err) {
-                console.log(err);
             }
             res.render('generados/nivel/migrar', {
                 'usuario': user.username

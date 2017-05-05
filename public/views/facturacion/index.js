@@ -72,10 +72,9 @@ window.validarCantidad = function(id, indice, nombre) {
             'id': id
         },
         error: function(respuesta) {
-            console.log(respuesta);
+            
         },
         success: function(respuesta) {
-            console.log("----------->" + JSON.stringify(respuesta));
             var cantidad = parseInt($("#example tbody").find("tr").eq(indice).find("td").eq(5).find("input").val());
             var cantidadExistente = parseInt(respuesta.cantidad);
             if (cantidad > cantidadExistente) {
@@ -199,7 +198,6 @@ function eliminar(ids) {
 
 function comprobarFormaDePago(forma_pago) {
     if (forma_pago === 'efectivo') {
-        console.log("Pago en Efectivo");
         var label_dinero = "<div class='span2'>Ingreso:</div>";
         var input_dinero = "<input type='text' id='dinero_pagado' autofocus='autofocus' focus class='form-control' style='width: 300px;' onkeypress=' return event.charCode >= 48 && event.charCode <= 57;'></input>";
         var label_devuelta = "<div class='span2'>Devolución:</div>";
@@ -212,7 +210,6 @@ function comprobarFormaDePago(forma_pago) {
         });
     } else {
         $("#dinero").html("");
-        console.log("Otra Forma de Pago " + forma_pago);
     }
 }
 $(document).ready(function() {
@@ -285,10 +282,10 @@ $(document).ready(function() {
                     'fechaModificacion': ''
                 },
                 error: function(respuesta) {
-                    console.log(respuesta);
+                    
                 },
                 success: function(respuesta) {
-                    console.log(respuesta);
+                    
                     table2.ajax.reload(null, true);
                     $("#example_wrapper").hide();
                     $("#pagar").hide();
@@ -527,7 +524,6 @@ function mostrar(salida) {
                               preventDuplicates: false,
                               timeOut: "1000",
                               onclick: function() {
-                                  console.log("Toco el Mensaje");
                               }
                           };
                           //success error warning info
@@ -675,7 +671,7 @@ function comprovarCantidadesR() {
                     'indice': m
                 },
                 error: function(respuesta) {
-                    console.log(respuesta);
+                    
                 },
                 success: function(respuesta) {
                     var indice = respuesta.indice;
@@ -713,7 +709,7 @@ function ver2(id) {
             'id': id
         },
         error: function(respuesta) {
-            console.log(respuesta);
+            
         },
         success: function(respuesta) {
             $("#id").val(respuesta._id);
@@ -739,7 +735,7 @@ function eliminar2(id) {
                 'id': id
             },
             error: function(respuesta) {
-                console.log(respuesta);
+                
             },
             success: function(respuesta) {
                 if (respuesta !== '') {
@@ -777,11 +773,11 @@ $(document).ready(function() {
                 'data': salida
             },
             error: function(respuesta) {
-                console.log(respuesta);
+                
             },
             success: function(respuesta) {
                 if (respuesta !== '') {
-                    console.log(respuesta);
+                    
                     table2.ajax.url("/account/facturacion/listar/").load();
                     mensajeInformacion("Se ha Actualizado la Factura!.");
                 }
@@ -906,7 +902,6 @@ $(document).ready(function() {
                             preventDuplicates: false,
                             timeOut: "1000",
                             onclick: function() {
-                                console.log("Toco el Mensaje");
                             }
                         };
                         //success error warning info
@@ -920,7 +915,6 @@ $(document).ready(function() {
                                         'id': $(this).attr("class")
                                     },
                                     error: function(respuesta) {
-                                        console.log("Error " + respuesta);
                                     },
                                     success: function(respuesta) {
                                         mostrarTabla();
@@ -994,7 +988,6 @@ $(document).ready(function() {
                                 'id': $(this).attr("class")
                             },
                             error: function(respuesta) {
-                                console.log("Error " + respuesta);
                             },
                             success: function(respuesta) {
                                 mensajeAdvertencia("La Factura ha sido Anulada!.");
