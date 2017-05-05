@@ -345,7 +345,7 @@ window.minmax =function(value, min, max) {
     } else {
 
         if (parseInt(value) > max) {
-            toastr.options = {
+            window.toastr.options = {
                 closeButton: true,
                 debug: false,
                 newestOnTop: false,
