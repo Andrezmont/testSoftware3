@@ -35,7 +35,6 @@
     };
     exports.ingresar = function(req, res) {
         var item = req.body;
-        //item.data.campos[0].valor = parseInt(item[0].data.campos[0].valor);
         req.app.db.models.area.create(item, function(err, doc) {
             if (err) {
                 res.send('Error');
@@ -53,7 +52,9 @@
             'data.nombre': 1
         }, function(err, doc) {
             if (err) {
+                res.send('Error');
             } else {
+
                 if (doc[0] !== undefined && doc[0] !== '') {
                     res.send(doc[0].data);
                 } else {
@@ -66,8 +67,7 @@
         req.app.db.models.area.findById(req.body.id, {
             'data': 1
         }, function(err, doc) {
-            if (err) {
-            } else {
+            if (err) {} else {
                 res.send(doc.data);
             }
         });
@@ -76,14 +76,11 @@
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
         }).exec(function(err, user) {
-            if (err) {
-            }
-            req.app.db.models.area.find({
-            }).sort({
+            if (err) {}
+            req.app.db.models.area.find({}).sort({
                 "fecha_creacion": -1
             }).exec(function(err, doc) {
-                if (err) {
-                } else {
+                if (err) {} else {
                     res.send(doc);
                 }
             });
@@ -96,14 +93,14 @@
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
         }).exec(function(err, user) {
-          if (err) {
-              res.send('Error');
-          } else {
-            res.render('generados/area/personalizar', {
-                'usuario': user.username,
-                'modulo': 'area'
-            });
-          }
+            if (err) {
+                res.send('Error');
+            } else {
+                res.render('generados/area/personalizar', {
+                    'usuario': user.username,
+                    'modulo': 'area'
+                });
+            }
         });
     };
     exports.eliminarTodo = function(req, res) {
@@ -125,7 +122,7 @@
         var item = req.body;
         req.app.db.models.campo.create(item, function(err, doc) {
             if (err) {
-              res.send('Error');
+                res.send('Error');
             } else {
                 res.send({
                     'exitoso': 'si'
@@ -137,18 +134,17 @@
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
         }).exec(function(err, user) {
-            if (err) {
-            }
+            if (err) {}
             req.app.db.models.campo.find({
                 'modulo': 'area'
             }).sort({
                 'indice': 1
             }).exec(function(err, doc) {
-              if (err) {
-                  res.send('Error');
-              } else {
-                  res.send(doc);
-              }
+                if (err) {
+                    res.send('Error');
+                } else {
+                    res.send(doc);
+                }
             });
         });
     };
@@ -189,8 +185,7 @@
             res.redirect('/login/');
         }
         req.app.db.models.User.findById(req.user.id, 'username').exec(function(err, user) {
-            if (err) {
-            }
+            if (err) {}
             res.render('generados/area/migrar', {
                 'usuario': user.username
             });
