@@ -3,9 +3,10 @@
 
   exports.grafica = function(req, res) {
       req.app.db.models.User.findById(req.user.id, {'username':1,'empresa':1}).exec(function(err, user) {
-          if (err)
+          if (err) console.log(err);
           req.app.db.models.area.find({},{'data':1}).exec(function(err, areas) {
               if (err) {
+                  console.log(err);
                 }
 
                 var ars= [];
@@ -18,7 +19,7 @@
   };
   exports.cuestionario = function(req, res) {
     req.app.db.models.cuestionario.find({'data.valor': req.body.area},{'data':1}).exec(function(err, ask) {
-      if (err)
+      if (err) console.log(err);
       var ars= [];
       var respuesta,od,oc,ob,oa,ra,rb,rc,rd,encabezado;
         for (var i = 0; i < ask.length; i++) {
@@ -70,7 +71,7 @@
   };
   exports.niveles = function(req, res) {
     req.app.db.models.nivel.find({},{'data':1}).exec(function(err, ask) {
-      if (err)
+      if (err) console.log(err);
       var ars= [];
       for (var i = 0; i < ask.length; i++) {
         ars.push({
@@ -87,6 +88,7 @@
     //item.data.campos[0].valor = parseInt(item[0].data.campos[0].valor);
     req.app.db.models.registro.create(item, function(err, doc) {
         if (err) {
+            console.log(err);
             res.send('Error');
         } else {
             res.send('Ok');
@@ -96,7 +98,7 @@
   exports.historial = function(req, res) {
     req.app.db.models.User.findById(req.user.id, {'username':1,'empresa':1}).exec(function(err, user) {
       req.app.db.models.registro.find({'empresa':user.empresa}).sort({"fecha_creacion": -1}).exec(function(err, ask) {
-        if (err)
+        if (err) console.log(err);
         res.render('grafica/historial',{'historial':ask});
       });
     });
@@ -106,6 +108,7 @@
       req.app.db.models.indicador.find({'data.valor': req.body.area},{'data':1}).exec(function(err, info) {
           //{"$or": [{'data.valor': req.body.area}, {'data.valor': 'Activo'}]}
           if (err) {
+              console.log(err);
           }
           var entrada = [];
 
