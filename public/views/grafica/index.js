@@ -243,8 +243,6 @@ window.saveCaculus = function(a_total,a_actual,nivel,porcentaje) {
         'porcentaje':porcentaje,
         'usuario':$("#usuario").attr("class"),
         'empresa':$("#empresa").attr("class")
-      },
-      success: function(doc) {
       }
   });
 };
@@ -309,16 +307,14 @@ window.minmax =function(value, min, max) {
                 progressBar: true,
                 positionClass: "toast-top-center" || 'toast-top-right',
                 preventDuplicates: false,
-                timeOut: "1000",
-                onclick: function() {
-                }
+                timeOut: "1000"
             };
             /**
              * @autor:godie007
              * @date: 2017/04/13 14:31
              * Plugin para mostrar Notificación emergente de Advertenca
              **/
-            toastr.warning("El valor debe estar en el intervalo [" + min + "," + max + "]", "Importante!");
+            window.toastr.warning("El valor debe estar en el intervalo [" + min + "," + max + "]", "Importante!");
             return max;
         } else {
             return value;
