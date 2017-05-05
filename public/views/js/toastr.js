@@ -8,11 +8,11 @@
                     message: e,
                     optionsOverride: n,
                     title: t
-                })
+                });
             }
 
             function n(t, n) {
-                return t || (t = m()), v = e("#" + t.containerId), v.length ? v : (n && (v = u(t)), v)
+                return t || (t = m()), v = e("#" + t.containerId), v.length ? v : (n && (v = u(t)), v);
             }
 
             function i(e, t, n) {
@@ -22,11 +22,11 @@
                     message: e,
                     optionsOverride: n,
                     title: t
-                })
+                });
             }
 
             function o(e) {
-                w = e
+                w = e;
             }
 
             function s(e, t, n) {
@@ -36,7 +36,7 @@
                     message: e,
                     optionsOverride: n,
                     title: t
-                })
+                });
             }
 
             function a(e, t, n) {
@@ -46,7 +46,7 @@
                     message: e,
                     optionsOverride: n,
                     title: t
-                })
+                });
             }
 
             function r(e, t) {
@@ -56,11 +56,11 @@
 
             function c(t) {
                 var i = m();
-                return v || n(i), t && 0 === e(":focus", t).length ? void h(t) : void(v.children().length && v.remove())
+                return v || n(i), t && 0 === e(":focus", t).length ? void h(t) : void(v.children().length && v.remove());
             }
 
             function d(t) {
-                for (var n = v.children(), i = n.length - 1; i >= 0; i--) l(e(n[i]), t)
+                for (var n = v.children(), i = n.length - 1; i >= 0; i--) l(e(n[i]), t);
             }
 
             function l(t, n, i) {
@@ -69,13 +69,13 @@
                     duration: n.hideDuration,
                     easing: n.hideEasing,
                     complete: function() {
-                        h(t)
+                        h(t);
                     }
-                }), !0) : !1
+                }), !0) : !1;
             }
 
             function u(t) {
-                return v = e("<div/>").attr("id", t.containerId).addClass(t.positionClass).attr("aria-live", "polite").attr("role", "alert"), v.appendTo(e(t.target)), v
+                return v = e("<div/>").attr("id", t.containerId).addClass(t.positionClass).attr("aria-live", "polite").attr("role", "alert"), v.appendTo(e(t.target)), v;
             }
 
             function p() {
@@ -113,7 +113,7 @@
                     newestOnTop: !0,
                     preventDuplicates: !1,
                     progressBar: !1
-                }
+                };
             }
 
             function f(e) {
@@ -187,7 +187,7 @@
                         complete: function() {
                             h(y), x.onHidden && "hidden" !== j.state && x.onHidden(), j.state = "hidden", j.endTime = new Date, f(j)
                         }
-                    })) : void 0
+                    })) : void 0;
                 }
 
                 function O() {
@@ -198,12 +198,12 @@
                     clearTimeout(H), q.hideEta = 0, y.stop(!0, !0)[x.showMethod]({
                         duration: x.showDuration,
                         easing: x.showEasing
-                    })
+                    });
                 }
 
                 function D() {
-                    var e = (q.hideEta - (new Date).getTime()) / q.maxHideTime * 100;
-                    B.width(e + "%")
+                    var e = (q.hideEta - (new Date()).getTime()) / q.maxHideTime * 100;
+                    B.width(e + "%");
                 }
                 var x = m(),
                     E = t.iconClass || x.iconClass;
@@ -223,7 +223,7 @@
                         j = {
                             toastId: T,
                             state: "visible",
-                            startTime: new Date,
+                            startTime: new Date(),
                             options: x,
                             map: t
                         };
@@ -258,8 +258,8 @@
                     warning: a
                 };
             return b
-        }()
-    })
+        }();
+    });
 }("function" == typeof define && define.amd ? define : function(e, t) {
     "undefined" != typeof module && module.exports ? module.exports = t(require("jquery")) : window.toastr = t(window.jQuery)
 });
