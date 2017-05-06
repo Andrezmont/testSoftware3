@@ -17,6 +17,6 @@ test:
 staging:
   type: deploy
   script:
-  - echo deploying...
+  - yarn deploy
   only:
   - master

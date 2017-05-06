@@ -6,7 +6,8 @@
     "start": "grunt",
     "update": "godie007 update",
     "build": "webpack",
-    "test": "mocha --recursive"
+    "test": "mocha --recursive",
+    "deploy": "shipit staging deploy"
   },
   "dependencies": {
     "async": "^1.5.2",
@@ -93,6 +94,8 @@
     "mocha": "^3.3.0",
     "moment": "^2.x.x",
     "respond.js": "^1.x.x",
+    "shipit-cli": "^3.0.0",
+    "shipit-deploy": "^2.4.0",
     "style-loader": "^0.16.1"
   }
 }
