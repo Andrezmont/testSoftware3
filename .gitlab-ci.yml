@@ -8,8 +8,15 @@ image: node:latest
 cache:
   paths:
   - node_modules/
-test_async:
+test:
   script:
-   - npm install
-   - npm test
+   - yarn
+   - yarn test
    - /home/godie007/sonar-scanner-3.0.1.733-linux/bin/sonar-scanner -Dsonar.sources=.
+
+staging:
+  type: deploy
+  script:
+  - echo deploying...
+  only:
+  - master
