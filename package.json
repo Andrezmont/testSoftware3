@@ -90,6 +90,7 @@
     "html5shiv": "^3.x.x",
     "jquery": "^2.x.x",
     "jquery.cookie": "^1.x.x",
+    "mocha": "^3.3.0",
     "moment": "^2.x.x",
     "respond.js": "^1.x.x",
     "style-loader": "^0.16.1"
