@@ -238,9 +238,9 @@ function generarGrafica() {
 
             var porcent = Math.abs(100*((op-minimo)/(maximo-minimo)));
             console.log("respueta "+op+" min "+minimo+" max " + maximo);
-            console.log("Porcentaje "+porcent);
+            console.log("Porcentaje "+porcent|0);
             labels.push("Questionnaire");
-            values.push(porcent);
+            values.push(porcent|0);
 
             var areaActual = engine.calculateArea(values).toFixed(2);
             $("#areaF").text("Area Actual: " + areaActual);

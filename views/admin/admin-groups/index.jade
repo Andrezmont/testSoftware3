@@ -1,7 +1,7 @@
 extends ../../../layouts/admin
 
 block head
-  title Manage Admin Groups
+  title Grupo de Administradores
 
 block neck
   link(rel='stylesheet', href='/views/admin/admin-groups/index.min.css?#{cacheBreaker}')
@@ -12,8 +12,9 @@ block feet
   script(src='/views/admin/admin-groups/index.min.js?#{cacheBreaker}')
 
 block body
-  div.row
-    div.col-xs-12
+  div.col-sm-11
+  .col-lg-12
+    .box
       div#header
       div#filters
       div#results-table
@@ -25,7 +26,7 @@ block body
         div.input-group
           input.form-control(name='name', type='text', placeholder='enter a name', value!='<%= name %>')
           button.btn.btn-primary.btn-add(type='button') Add New
-      h1 Admin Groups
+      h1 Grupo de Administradores
 
   script(type='text/template', id='tmpl-filters')
     form.filters
@@ -34,7 +35,7 @@ block body
           label Name Search
           input.form-control(name='name', type='text')
         div.col-sm-3
-          label Sort By
+          label Por
           select.form-control(name='sort')
             option(value='_id') id &#9650;
             option(value='-_id') id &#9660;

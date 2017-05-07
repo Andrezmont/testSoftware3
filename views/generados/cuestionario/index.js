@@ -211,11 +211,13 @@
                   req.app.db.models.cuestionario.find({},{'data':1}).exec(function(err,area) {
                     for (var i = 0; i < doc.length; i++) {
                       if (doc[i].label ==="Relación") {
+
                         doc[i].values=[];
-                        for (var h = 0; h < area.length; h++) {
-                          for (var s = 0; s < area[h].data.length; s++) {
-                            if (area[h].data[s].titulo === 'Indice') {
-                              doc[i].values[h] = {'value':area[h]._id,'label':area[h].data[s].valor};
+                        doc[i].values[0] = {'value':'','label':''};
+                        for (var h = 1; h <= area.length; h++) {
+                          for (var s = 0; s < area[h-1].data.length; s++) {
+                            if (area[h-1].data[s].titulo === 'Indice') {
+                              doc[i].values[h] = {'value':area[h-1].data[s].valor,'label':area[h-1].data[s].valor};
                             }
                           }
                         }

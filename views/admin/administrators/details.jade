@@ -1,17 +1,23 @@
 extends ../../../layouts/admin
 
 block head
-  title Administrators / Details
+  title Administradores/Detalles
 
 block neck
   link(rel='stylesheet', href='/views/admin/administrators/details.min.css?#{cacheBreaker}')
 
 block feet
+  
+  script(src='/vendor/jquery/jquery.js')
+  script(src='/js/bootstrap.min.js')
+  script(src='/js/cargue.js?#{cacheBreaker}')
+  script(src='/vendor/bootstrap/js/dropdown.js')
   script(src='/views/admin/administrators/details.min.js?#{cacheBreaker}')
 
 block body
-  div.row
-    div.col-xs-12
+  div.col-sm-11
+  .col-lg-12
+    .box
       div#header
       div#details
       div#login
@@ -22,12 +28,12 @@ block body
   script(type='text/template', id='tmpl-header')
     div.page-header
       h1
-        a(href='/admin/administrators/') Administrators
+        a(href='/admin/administrators/') Administradores
         |  / <%- name.full %>
 
   script(type='text/template', id='tmpl-details')
     fieldset
-      legend Contact Info
+      legend Información de Contacto
       div.alerts
         |<% _.each(errors, function(err) { %>
         div.alert.alert-danger.alert-dismissable
@@ -40,19 +46,19 @@ block body
           | Changes have been saved.
         |<% } %>
       div.form-group(class!='<%- errfor.first ? "has-error" : "" %>')
-        label First Name:
+        label Primer Nombre:
         input.form-control(type='text', name='first', value!='<%= first %>')
         span.help-block <%- errfor.first %>
       div.form-group(class!='<%- errfor.middle ? "has-error" : "" %>')
-        label Middle Name:
+        label Segundo Nombre:
         input.form-control(type='text', name='middle', value!='<%= middle %>')
         span.help-block <%- errfor['middle'] %>
       div.form-group(class!='<%- errfor.last ? "has-error" : "" %>')
-        label Last Name:
+        label Apellido:
         input.form-control(type='text', name='last', value!='<%= last %>')
         span.help-block <%- errfor.last %>
       div.form-group
-        button.btn.btn-primary.btn-update(type='button') Update
+        button.btn.btn-primary.btn-update(type='button') Actualizar
 
   script(type='text/template', id='tmpl-login')
     fieldset
