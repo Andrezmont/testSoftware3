@@ -207,7 +207,6 @@ function generarGrafica() {
             console.log(respuesta);
         },
         success: function(doc) {
-            var contador = 0;
             var minimo = 0;
             var maximo = 0;
             var op = 0;
