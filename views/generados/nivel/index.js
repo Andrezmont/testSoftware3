@@ -179,7 +179,7 @@
         req.app.db.models.User.findById(req.user.id, {
             'username': 1
         }).exec(function(err, user) {
-            if (err) { 
+            if (err) {
             }
             req.app.db.models.campo.find({
                 'modulo': 'nivel'
@@ -297,7 +297,7 @@
                             for (var s = 0; s < Object.keys(jsonObj[i]).length; s++) {
                                 var id = 'otro';
                                 for (var r = 0; r < doc.length; r++) {
-                                    if (doc[r].label === Object.keys(jsonObj[i])[s]) {
+                                    if (doc[r].label === Object.keys(jsonObj[i])[s].replace(new RegExp(" ","g"), "_")) {
                                         id = doc[r].name;
                                         break;
                                     }
