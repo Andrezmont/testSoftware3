@@ -34,9 +34,7 @@ $(document).ready(function() {
             $("#formCuestionario").show();
             $("#chartRadar").hide();
             $("#resultado").hide();
-            console.log("PASO 2");
         }
-        console.log(JSON.stringify(stepItem[step]));
         if (stepItem[step]) {
           $('#' + stepItem[step].dataset.id).removeClass('out');
         }
@@ -68,7 +66,6 @@ $(document).ready(function() {
             return;
         }
         if (step == 1) {
-            console.log("PASO 1");
             $("#formInicio").show();
             $("#formCuestionario").hide();
             $("#chartRadar").hide();
@@ -158,24 +155,47 @@ $(document).ready(function() {
                     console.log(respuesta);
                 },
                 success: function(r) {
+                    var opt = [];
                     $("#formCuestionario div").remove();
-                    for (var i = 0; i < r.ask.length; i++) {
+                    var m=0;
+                    for (var i = 0; i < r.ask.length ; i++) {
+                        var disable='';
                         var form = '<form>';
                         var Sform = '</form>';
-                        var div = '<div class="box">';
+                        if (r.ask[i].relacion !== '') {
+                          opt[m]={'indice':r.ask[i].indice,'relacion':r.ask[i].relacion};
+                          m++;
+                          disable = 'disable';
+                        }
+                        var div = '<div class="box '+disable+'" id="P'+r.ask[i].indice+'">';
                         var Sdiv = '</div>';
-                        var label = '<label class="control-label">' + r.ask[i].text + '</label>';
+                        var label = '<label class="control-label">'+r.ask[i].indice+')' + r.ask[i].text + '</label>';
                         var radio = '<div class="radio">';
                         var Slabel = '<label>';
-                        var labelA = r.ask[i].OA.length > 1 ? '<input type="radio" class="radio' + i + '" id="radio" class="' + i + '" value="A" name="radio"/>' + r.ask[i].OA + '</br>' : '';
-                        var labelB = r.ask[i].OB.length > 1 ? '<input type="radio" class="radio' + i + '" id="radio" class="' + i + '" value="B" name="radio"/>' + r.ask[i].OB + '</br>' : '';
-                        var labelC = r.ask[i].OC.length > 1 ? '<input type="radio" class="radio' + i + '" id="radio" class="' + i + '" value="C" name="radio"/>' + r.ask[i].OC + '</br>' : '';
-                        var labelD = r.ask[i].OD.length > 1 ? '<input type="radio" class="radio' + i + '" id="radio" class="' + i + '" value="D" name="radio"/>' + r.ask[i].OD + '</br>' : '';
+                        var labelA = r.ask[i].OA.length > 1 ? '<input type="radio" class="radio' + r.ask[i].indice + '" id="radio" class="' + i + '" value="A" name="radio"/>' + r.ask[i].OA + '</br>' : '';
+                        var labelB = r.ask[i].OB.length > 1 ? '<input type="radio" class="radio' + r.ask[i].indice + '" id="radio" class="' + i + '" value="B" name="radio"/>' + r.ask[i].OB + '</br>' : '';
+                        var labelC = r.ask[i].OC.length > 1 ? '<input type="radio" class="radio' + r.ask[i].indice + '" id="radio" class="' + i + '" value="C" name="radio"/>' + r.ask[i].OC + '</br>' : '';
+                        var labelD = r.ask[i].OD.length > 1 ? '<input type="radio" class="radio' + r.ask[i].indice + '" id="radio" class="' + i + '" value="D" name="radio"/>' + r.ask[i].OD + '</br>' : '';
 
                         $("#formCuestionario").append(div + label + form + radio + labelA + labelB + labelC + labelD + Sdiv + Sform + Slabel + Sdiv + Sdiv);
                         $("#formCuestionario").hide();
 
                     }
+                    $("input[id^='radio']").change(function(){
+                      var respuesta = $(this).val();
+                        var item = $(this).attr("class").split("radio")[1];
+
+                        for (var i = 0; i < opt.length; i++) {
+                          if (opt[i].relacion === item) {
+                            if (respuesta === 'B') {
+                            $('#P'+opt[i].indice).show();
+                          }else {
+                            $('#P'+opt[i].indice).hide();
+                          }
+                        }
+                      }
+
+                    });
                 }
             });
         }
