@@ -111,7 +111,7 @@
                       var doc = indicador;
                       for (var i = 0; i < doc.length; i++) {
                         for (var f = 0; f < doc[i].data.length; f++) {
-                          if (doc[i].data[f].titulo ==="Area") {
+                          if (doc[i].data[f].titulo ==="Área") {
                             var idArea = doc[i].data[f].valor;
                             for (var s = 0; s < area.length; s++) {
                               if (String(area[s]._id) === String(idArea)) {
@@ -195,7 +195,7 @@
                   req.app.db.models.area.find({},{'data':1},function(err,area) {
                     var temp = [];
                     for (var i = 0; i < doc.length; i++) {
-                      if (doc[i].label ==="Area") {
+                      if (doc[i].label ==="Área") {
                         for (var h = 0; h < area.length; h++) {
                           doc[i].values[h] = {'value':area[h]._id,'label':area[h].data[0].valor};
                         }

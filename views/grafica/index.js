@@ -70,7 +70,7 @@
                     if (ask[i].data[s].titulo === 'Relación') {
                         relacion = ask[i].data[s].valor;
                     }
-                    if (ask[i].data[s].titulo === 'Indice') {
+                    if (ask[i].data[s].titulo === 'Índice') {
                         indice = ask[i].data[s].valor;
                     }
 
@@ -174,10 +174,10 @@
                     if (info[i].data[s].titulo === 'Nombre') {
                         titulo = info[i].data[s].valor;
                     }
-                    if (info[i].data[s].titulo === 'Valor Minimo') {
+                    if (info[i].data[s].titulo === 'Valor Mínimo') {
                         min = info[i].data[s].valor;
                     }
-                    if (info[i].data[s].titulo === 'Valor Maximo') {
+                    if (info[i].data[s].titulo === 'Valor Máximo') {
                         max = info[i].data[s].valor;
                     }
                     if (info[i].data[s].titulo === 'Descripción') {

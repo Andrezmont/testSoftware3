@@ -111,7 +111,7 @@
                     var doc = indicador;
                     for (var i = 0; i < doc.length; i++) {
                       for (var f = 0; f < doc[i].data.length; f++) {
-                        if (doc[i].data[f].titulo ==="Area") {
+                        if (doc[i].data[f].titulo ==="Área") {
                           var idArea = doc[i].data[f].valor;
                           for (var s = 0; s < area.length; s++) {
                             if (String(area[s]._id) === String(idArea)) {
@@ -194,7 +194,7 @@
                   temp = [];
                   req.app.db.models.area.find({},{'data':1},function(err,area) {
                     for (var i = 0; i < doc.length; i++) {
-                      if (doc[i].label ==="Area") {
+                      if (doc[i].label ==="Área") {
                         for (var h = 0; h < area.length; h++) {
                           doc[i].values[h] = {'value':area[h]._id,'label':area[h].data[0].valor};
                         }
@@ -211,12 +211,11 @@
                   req.app.db.models.cuestionario.find({},{'data':1}).exec(function(err,area) {
                     for (var i = 0; i < doc.length; i++) {
                       if (doc[i].label ==="Relación") {
-
                         doc[i].values=[];
                         doc[i].values[0] = {'value':'','label':''};
                         for (var h = 1; h <= area.length; h++) {
                           for (var s = 0; s < area[h-1].data.length; s++) {
-                            if (area[h-1].data[s].titulo === 'Indice') {
+                            if (area[h-1].data[s].titulo === 'Índice') {
                               doc[i].values[h] = {'value':area[h-1].data[s].valor,'label':area[h-1].data[s].valor};
                             }
                           }
