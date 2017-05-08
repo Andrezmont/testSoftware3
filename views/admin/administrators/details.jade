@@ -8,11 +8,11 @@ block neck
 
 block feet
   
-  script(src='/vendor/jquery/jquery.js')
-  script(src='/js/bootstrap.min.js')
+  script(src='/layouts/core.min.js?#{cacheBreaker}')
+  script(src='/layouts/ie-sucks.min.js?#{cacheBreaker}')
   script(src='/js/cargue.js?#{cacheBreaker}')
-  script(src='/vendor/bootstrap/js/dropdown.js')
   script(src='/views/admin/administrators/details.min.js?#{cacheBreaker}')
+  script(src='/vendor/bootstrap/js/dropdown.js')
 
 block body
   div.col-sm-11
