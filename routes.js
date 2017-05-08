@@ -230,6 +230,7 @@
     //account
     app.all('/account*', ensureAuthenticated);
     app.all('/account*', ensureAccount);
+    app.get('/account/:locale', require('./views/account/index').init);
     app.get('/account/', require('./views/account/index').init);
 
     //account > verification

@@ -12,6 +12,7 @@
         path = require('path'),
         passport = require('passport'),
         mongoose = require('mongoose'),
+        i18n = require("i18n"),
         helmet = require('helmet');
     //create express app
     var app = express();
@@ -62,6 +63,27 @@
           next(); // pass control to the next handler
       });
     });
+
+    
+    // i18n configure
+    i18n.configure({
+      locales: ['es', 'br'],
+      cookie: 'idioma',
+      defaultLocale: 'es',
+      objectNotation: true,
+      directory: __dirname + '/locales'
+    });
+    app.use(function (req, res, next) {
+      res.locals.__ = res.__ = function() {
+          return i18n.__.apply(req, arguments);
+      };
+      next();
+    });
+
+    // Should always before app.route
+    app.use(i18n.init);
+
+
     app.use(session({
         resave: true,
         saveUninitialized: true,
@@ -82,6 +104,7 @@
         res.locals.user.username = req.user && req.user.username;
         next();
     });
+
     //global locals
     app.locals.projectName = app.config.projectName;
     app.locals.copyrightYear = new Date().getFullYear();

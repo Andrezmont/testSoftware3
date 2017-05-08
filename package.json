@@ -40,6 +40,8 @@
     "grunt-newer": "^1.2.0",
     "grunt-nodemon": "^0.4.2",
     "helmet": "^0.9.1",
+    "i18n": "^0.8.3",
+    "i18next": "^8.1.0",
     "jade": "^1.11.0",
     "jquery": "^2.2.4",
     "jquery-ui": "^1.12.1",

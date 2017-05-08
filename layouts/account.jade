@@ -35,11 +35,13 @@ html
             a.navbar-brand(href='/') #{projectName}
           // Top Menu Items
           ul.nav.navbar-right.top-nav
+            li: a(href="/account/es") es
+            li: a(href="/account/br") br
             li
               a(href='/logout/')
                 i.fa.fa-fw.fa-power-off
                 | (#{user.username}) Cerrar Sesión    
-              
+          
           // Menu de la Izquierda
           .collapse.navbar-collapse.navbar-ex1-collapse
             ul.nav.navbar-nav.side-nav
