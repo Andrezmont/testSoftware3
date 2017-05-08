@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-    // this function is strict...
     //dependencies
     var config = require('./config'),
         express = require('express'),
@@ -64,7 +63,7 @@
       });
     });
 
-    
+
     // i18n configure
     i18n.configure({
       locales: ['es', 'br'],
