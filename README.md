@@ -13,12 +13,12 @@ Información
 ===========
 
 La Aplicacióm esta desarrollada en [Node.js](https://nodejs.org/) v4.2.6. La Aplicacióm esta desarrollada en MongoDB [MongoDB](https://www.mongodb.com/) v3.2.1.
+tambien instalar Yarn https://yarnpkg.com/lang/en/docs/install/
 #Comandos de instalación del aplicativo.
 
 ```sh
 $ cd proyecto_ingSoftware3
-$ npm install -d
-$ npm start
+$ yarn install
 ```
 ## Tecnologias
 
@@ -46,6 +46,9 @@ var rootUser = db.users.findOne();
 rootAdmin.user = { id: rootUser._id, name: rootUser.username };
 db.admins.save(rootAdmin);
 ```
+## Datos del Administrador
+usuario Administrador:123
+contraseña Administrador:123
 
 ## Correr el Aplicativo
 
