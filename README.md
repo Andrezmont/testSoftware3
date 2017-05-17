@@ -37,7 +37,7 @@ Acceda a la terminal mongo y use esostos comandos
 ## Correr en terminal MongoDB
 
 ```js
-use RaJu
+use ventas
 db.admingroups.insert({ _id: 'root', name: 'Root' });
 db.admins.insert({ name: {first: 'Root', last: 'Admin', full: 'Root Admin'}, groups: ['root'] });
 var rootAdmin = db.admins.findOne();
@@ -66,7 +66,37 @@ Listo. Iniciar.
  - Creacion de un Sistema para analizar el nivel de madurez de una empresa
 
 ## Funcionalidades
- - Crear un sistema de información simple para administrar la busqueda de empresas
+1. Ingresar empresas
+2. Modificar Empresas
+3. Eliminar Empresas
+4. Analizar nivel de la empresa
+5. Ordenar la tabla al darle clic a uno de los títulos en la tabla de Empresas
+6. Seleccionar cuales filas mostrar en la tabla de Empresas
+7. Mostrar cuantas columnas mostrar en la tabla de Empresas
+8. Buscar en tiempo real en la tabla de Empresas
+9. Generar log de Sugerencias de Mejora
+10. Generar grafica radial
+11. Ingresar indicadores
+12. Ordenar la tabla al darle clic a uno de los títulos en la tabla de Indicadores
+13. Seleccionar cuales filas mostrar en la tabla de Indicadores
+14. Mostrar cuantas columnas mostrar en la tabla de Indicadores
+15. Buscar en tiempo real en la tabla de Indicadores
+16. Modificar Indicadores
+17. Eliminar Indicadores
+18. Ingresar Niveles
+19. Modificar Niveles
+20. Eliminar Niveles
+21. Ordenar la tabla al darle clic a uno de los títulos en la tabla de Niveles
+22. Seleccionar cuales filas mostrar en la tabla de Niveles
+23. Mostrar cuantas columnas mostrar en la tabla de Niveles
+24. Buscar en tiempo real en la tabla de Niveles
+25. Ingresar Cuestionarios
+26. Modificar Cuestionarios
+27. Eliminar Cuestionarios
+28. Ordenar la tabla al darle clic a uno de los títulos en la tabla de Cuestionarios
+29. Seleccionar cuales filas mostrar en la tabla de Cuestionarios
+30. Mostrar cuantas columnas mostrar en la tabla de Cuestionarios
+31. Buscar en tiempo real en la tabla de Cuestionarios
 
 ## License
-MIT
+Derechos Reservados
