@@ -32,7 +32,7 @@ $ yarn install
 | EmailJS       | Moment.js      |             |
 
 ## Configuaración
-Acceda a la terminal mongo y use esostos comandos
+Acceda a la terminal mongo y use estos comandos
 
 ## Correr en terminal MongoDB
 
@@ -47,8 +47,8 @@ rootAdmin.user = { id: rootUser._id, name: rootUser.username };
 db.admins.save(rootAdmin);
 ```
 ## Datos del Administrador
-usuario Administrador:123
-contraseña Administrador:123
+usuario: root|diegof.e3@gmail.com
+contraseña: 123
 
 ## Correr el Aplicativo
 
